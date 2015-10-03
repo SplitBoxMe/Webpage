@@ -38,17 +38,23 @@
 
 			<div class="container">
 				<h4>SplitBox.me</h4>
-				<p>SplitBox lets you securely share any file for free - and we mean it. Your file will never be stored completely on any server, and not even parts of it will ever leave your device unencrypted. We achieve this by localy encrypting your file using <a href="https://en.wikipedia.org/wiki/One-time_pad" target="_blank">one-time pad</a>, then splitting it up into unusable parts and finally uploading it to your connected cloud services. If you are suspicious, feel free to check out our code on <a href="https://github.com/SplitBoxMe" target="_blank">GitHub</a></p>
+				<p>SplitBox lets you securely share any file for free - and we mean it. Your file will never be stored completely on any server, and not even parts of it will ever leave your device unencrypted. We achieve this by localy encrypting your file using <a href="https://en.wikipedia.org/wiki/One-time_pad" target="_blank">one-time pad</a>, then splitting it up into unusable parts and finally uploading it to your connected cloud services. If you are suspicious, feel free to check out our code on <a href="https://github.com/SplitBoxMe" target="_blank">GitHub</a>.</p>
 				<div class="divider"></div>
 
 				<div class="section">
 					<h5>Connect your cloud storage</h5>
 					<p>The more cloud services you connect, the better your files will be protected. Make sure to use at least two, otherwise your encrypted file will not be split up into unusable parts.</p>
+
 					<a id="cloud_dropbox" class="primary-color-dark waves-effect waves-light btn-large" href="javascript:authorizeWithDropbox();"><i class="material-icons left">cloud_queue</i>Dropbox</a>
-					<a id="cloud_googledrive" class="primary-color-dark waves-effect waves-light btn-large"><i class="material-icons left">cloud_queue</i>Google Drive</a>
+
+					<a id="cloud_googledrive" class="primary-color-dark waves-effect waves-light btn-large" data-position="bottom" data-delay="50" data-tooltip="Not yet integrated"><i class="material-icons left">cloud_queue</i>Google Drive</a>
+
 					<a id="cloud_onedrive" class="primary-color-dark waves-effect waves-light btn-large" href="https://login.live.com/oauth20_authorize.srf?client_id=000000004816FB64&scope=onedrive.readwrite&response_type=token&redirect_uri=https://splitbox.me" id="onedriveButton"><i class="material-icons left">cloud_queue</i>OneDrive</a>
-					<a id="cloud_box" class="primary-color-dark waves-effect waves-light btn-large"><i class="material-icons left">cloud_queue</i>Box</a>
-					<a id="cloud_owncloud" class="primary-color-dark waves-effect waves-light btn-large"><i class="material-icons left">cloud_queue</i>OwnCloud</a>
+
+					<a id="cloud_box" class="primary-color-dark waves-effect waves-light btn-large tooltipped disabled" data-position="bottom" data-delay="50" data-tooltip="coming soon"><i class="material-icons left">cloud_off</i>Box</a>
+
+					<a id="cloud_owncloud" class="primary-color-dark waves-effect waves-light btn-large tooltipped disabled" data-position="bottom" data-delay="50" data-tooltip="coming soon"><i class="material-icons left">cloud_off</i>OwnCloud</a>
+
 				</div>
 				<div class="divider"></div>
 

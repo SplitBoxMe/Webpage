@@ -7,9 +7,9 @@ initDropZone();
 (function($){
   $(function(){
 
-  	$('select').material_select();
-  	$('.button-collapse').sideNav();
-  	
+	$('select').material_select();
+	$('.button-collapse').sideNav();
+	$('.tooltipped').tooltip({delay: 50});
 	window.dispatchEvent(new Event('resize'));
 
   initializeOneDrive();
