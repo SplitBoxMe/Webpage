@@ -70,7 +70,8 @@ function uploadFile(){
                     withLink: "true"
                 },
                 headers: {
-                    Authorization: 'Bearer ' + window.localStorage.getItem("googledriveToken")
+                    Authorization: 'Bearer ' + window.localStorage.getItem("googledriveToken"),
+                    Content-Type: 'application/json'
                 },
                 success: function (data) {
                     console.log("inserted ", data)
