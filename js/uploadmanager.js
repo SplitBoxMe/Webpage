@@ -28,13 +28,32 @@ function handleFileSelect(files) {
         }());
 
         encrypt(splitfile)
+
+        var uploads = 0
+        var links = {
+          key: '',
+          cipher: ''
+        }
         writeFileToDropbox(name, splitfile.key).then(function(result) {
-          console.log(result)
+          uploads++
+          links.key = result
+          showLink()
         })
 
         uploadFileToOneDrive(name, splitfile.cipher, function(cipherResult) {
-          console.log(cipherResult)
+          uploads++
+          links.cipher = cipherResult
+          showLink()
         })
+
+        function showLink() {
+          if(uploads < 2) {
+            return
+          }
+          console.log('https://splitbox.me/?file=' + btoa(JSON.stringify(links)))
+          console.log((JSON).parse(btoa(JSON.stringify(links))).key)
+
+        }
         //saveByteArray([splitfile.cipher], name);
         //decrypt(splitfile)
         //saveByteArray([splitfile.plain], name);

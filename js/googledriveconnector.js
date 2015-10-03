@@ -8,6 +8,10 @@ var SCOPES = ['https://www.googleapis.com/auth/drive.appfolder'];
  * Called when the client library is loaded.
  */
 function handleClientLoad() {
+    //checkAuth();
+}
+
+function authorizeWithGoogleDrive() {
     checkAuth();
 }
 
@@ -15,9 +19,11 @@ function handleClientLoad() {
  * Check if the current user has authorized the application.
  */
 function checkAuth() {
-    gapi.auth.authorize(
+    if (gapi.auth != null) {
+        gapi.auth.authorize(
         {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': true},
         handleAuthResult);
+    }
 }
 
 /**
