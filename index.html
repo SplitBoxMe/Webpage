@@ -67,29 +67,17 @@
 
 				<div class="section">
 					<h5>Select your file</h5>
+					<p>If you selected your file and connected your cloud services, click here and we'll start to process your file. This will be done on your machine, your file will not be transferred to our servers. Encryption and uploading may takes a few seconds.</p>
 					<p id="compatibilityWarning" class="hide"><span class="red-text">Compatibility warning:</span> This app has been developed using new web technologies to increase performance and save server costs. Not all browsers support these technologies yet. Please switch to <a href="http://www.google.com/chrome/" target="_blnak">Chrome</a> if you are having issues.</p>
 					<form action="#" class="dropzone" id="imageDropzone"></form>
 				</div>
 				<div class="divider"></div>
 				
-				<div class="section">
+				<div class="section hide">
 					<h5>Encrypt, Split &amp; Upload</h5>
 					<p>If you selected your file and connected your cloud services, click here and we'll start to process your file. This will be done on your machine, your file will not be transferred to our servers. Encryption and uploading may takes a few seconds.</p>
 					<a id="processButton" href="javascript:processFile();" class="primary-color-dark waves-effect waves-light btn-large disabled"><i class="material-icons left">backup</i>Process File</a>
-
-					<div id="modalUpload" class="modal">
-						<div class="modal-content">
-							<h4 id="uploadHeader">Modal Header</h4>
-							<p id="uploadDescription">A bunch of text</p>
-							<div id="uploadAnimationContainer">
-								<div id="boxLeft">&nbsp;</div>
-								<div id="boxRight">&nbsp;</div>
-							</div>
-						</div>
-					</div>
-					
 				</div>
-				<div class="divider"></div>
 
 				<div class="section">
 					<h5>Share</h5>
@@ -109,6 +97,17 @@
 					</div>
 				</div>
 
+				<div id="modalUpload" class="modal">
+					<div class="modal-content">
+						<h4 id="uploadHeader">Modal Header</h4>
+						<p id="uploadDescription">A bunch of text</p>
+						<div id="uploadAnimationContainer">
+							<div id="boxLeft">&nbsp;</div>
+							<div id="boxRight">&nbsp;</div>
+						</div>
+					</div>
+				</div>
+				
 			</div>
 
 		</main>

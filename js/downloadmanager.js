@@ -5,11 +5,12 @@ function readFileParam() {
   }
 }
 
-function encodeUrlFromBase64(base64) {
-  var urls;
-
+function encodeUrlFromBase64(urls) {
   var key = atob(urls.split('|')[0])
   var cipher = atob(urls.split('|')[1])
+
+  console.log(key)
+  console.log(cipher)
 
   downloadFileParts(key, cipher);
 }
@@ -20,46 +21,47 @@ function downloadFileParts(key, cipher) {
   var count = 0
 
   var splitfile = {
-    plain: plain,
-    key: key
+    plain: '',
+    key: ''
   }
 
-  $.ajax({
-    type: "GET",
-    url:key,
-    success: function(result) {
-      splitfile.key = result
-      count++
-      callback(result)
-    }
+  $.get(key, function(result) {
+    console.log("Key download done")
+    splitfile.key = result
+    count++
+    callback(result)
+  }, function() {
+    console.log('error')
   });
 
-  $.ajax({
-    type: "GET",
-    url:cipher,
-    success: function(result) {
-      splitfile.cipher = result
-      count++
-      callback(result)
-    }
+  $.get(cipher, function(result) {
+    console.log("Cipher download done")
+    splitfile.cipher = result
+    count++
+    callback(result)
+  }, function() {
+    console.log('error')
   });
 
   function callback() {
+    console.log(splitfile)
     if(count < 2) {
       return
     }
+
+    console.log(splitfile)
 
     decrypt(splitfile)
     saveByteArray([splitfile.plain], "test.txt");
     downloadFinished();
   }
 
-  for (var i = 0; i < urls.length; i++) {
-    var progress = Math.random() * 100;
-    setDownloadStatus("Downloading part " + i, progress);
-
-    // download
-  }
+  //for (var i = 0; i < urls.length; i++) {
+  //  var progress = Math.random() * 100;
+  //  setDownloadStatus("Downloading part " + i, progress);
+  //
+  //  // download
+  //}
 
 }
 

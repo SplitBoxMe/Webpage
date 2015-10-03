@@ -14,6 +14,8 @@ function authorizeWithGoogleDrive() {
         function(authResult){
             //On done with google Auth
             window.localStorage.setItem("googledriveToken", authResult.access_token)
+            cloudStorageConnected("googledrive");
+            console.log(authResult);
         });
 }
 
