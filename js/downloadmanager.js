@@ -68,31 +68,19 @@ function downloadFileParts(key, cipher) {
     key: ''
   }
 
-  $.ajax({
-    url: key,
-    type: "GET",
-    dataType: "binary",
-    processData: false,
-    success: function(result){
-      console.log("Key download done")
-      splitfile.key = result
-      count++
-      callback(result)
-    }
-  });
+  getFile(key).then(function(result){
+    console.log("Key download done")
+    splitfile.key = result
+    count++
+    callback(result)
+  }
 
-  $.ajax({
-    url: cipher,
-    type: "GET",
-    dataType: "binary",
-    processData: false,
-    success: function(result){
+  getFile(cipher).then(function(result){
       console.log("Cipher download done")
       splitfile.cipher = result
       count++
       callback(result)
-    }
-  });
+  }
 
   function callback() {
     console.log(splitfile)
