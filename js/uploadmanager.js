@@ -56,7 +56,8 @@ function handleFileSelect(files) {
             shareFile();
 
             var downloadUrl = 'https://splitbox.me/?file=' + btoa(links.key)+'|'+btoa(links.cipher)
-            $('#downloadLink').val(downloadUrl)
+            $('#downloadLink')[0].value = downloadUrl
+            $('#downloadLink').siblings('label, i').addClass('active');
             //console.log(atob(btoa(links.key)+'|'+btoa(links.cipher)).split['|'][0])
           }
         }
