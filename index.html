@@ -14,7 +14,7 @@
 		<script src="js/cloudstorageConnector.js" type="text/javascript"></script>
 	</head>
 	
-	<body onload="loaded();">
+	<body>
 		<header>
 			<nav class="primary-color" role="navigation">
 				<div class="nav-wrapper container">
@@ -40,8 +40,20 @@
 
 			<div class="container">
 				<h4>SplitBox.me</h4>
-				<p>Lorem Ipsum</p>
-				<input type="file" id="files" name="files[]" multiple />
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ex nibh, tempor sed quam a, tincidunt molestie quam. Donec pharetra eleifend blandit. Cras gravida metus dignissim ex finibus, non sodales lacus iaculis. Maecenas vestibulum ultricies tellus, tincidunt mattis mauris auctor molestie.</p>
+				<div class="divider"></div>
+
+				<div class="section">
+					<h5>Select your file</h5>
+					<p id="compatibilityWarning" class="hide"><span class="red-text">Compatibility warning:</span> This app has been developed using new web technologies to increase performance and save server costs. Not all browsers support these technologies yet. Please switch to <a href="http://www.google.com/chrome/" target="_blnak">Chrome</a> if you are having issues.</p>
+					<form action="#" class="dropzone" id="imageDropzone"></form>
+				</div>
+
+				<div class="divider"></div>
+				<div class="section">
+					<h5>Debugging stuff</h5>
+					<input type="file" id="files" name="files[]" multiple />
+				</div>
 			</div>
 
 		</main>
