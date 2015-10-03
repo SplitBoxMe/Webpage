@@ -21,7 +21,7 @@ function initializeOneDrive() {
       var l = window.localStorage.getItem("location_restore") + ''
       console.log(l)
       window.localStorage.removeItem("location_restore")
-      //location = l
+      location = l
     }
 
   } else {
