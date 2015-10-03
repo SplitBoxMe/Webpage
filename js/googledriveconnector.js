@@ -8,7 +8,7 @@ var SCOPES = ['https://www.googleapis.com/auth/drive.appfolder'];
  * Called when the client library is loaded.
  */
 function handleClientLoad() {
-    //checkAuth();
+    
 }
 
 function authorizeWithGoogleDrive() {
