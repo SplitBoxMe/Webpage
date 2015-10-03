@@ -59,13 +59,13 @@ function uploadFile(){
 
             var request = gapi.client.drive.permissions.get({
                 'fileId': fileId,
-                'permissionId': permissionId
+                'permissionId': "type"
             });
             request.execute(function(resp) {
                 resp.role = "anyone";
                 var updateRequest = gapi.client.drive.permissions.update({
                     'fileId': fileId,
-                    'permissionId': permissionId,
+                    'permissionId': "type",
                     'resource': resp
                 });
                 updateRequest.execute(function(resp) { });
