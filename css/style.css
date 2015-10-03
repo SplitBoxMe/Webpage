@@ -37,9 +37,14 @@ a:hover {
   height: 500px;
 }
 
-#logo-left-container, #logo-center-container {
-  padding-top: 10px;
-  overflow: hidden;
+#logo-left-container {
+  height: 100%;
+  padding: 5px;
+}
+
+#logo-left-container img {
+    height: 100%;
+    width: auto;
 }
 
 .button-collapse {
@@ -168,7 +173,7 @@ footer.page-footer {
 }
 
 .primary-color-dark {
-  background-color: #5D4037 !important;
+  background-color: #63443a !important;
 }
 
 .primary-color-light {
@@ -184,7 +189,7 @@ footer.page-footer {
 }
 
 .primary-color-dark-text {
-  color: #5D4037 !important;
+  color: #63443a !important;
 }
 
 .primary-color-light-text {
