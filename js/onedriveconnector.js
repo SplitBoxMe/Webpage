@@ -14,7 +14,7 @@ function initializeOneDrive() {
     cloudStorageConnected("onedrive")
   }
 
-  console.log(window.localStorage.getItem("expire") > new Date())
+  //console.log(window.localStorage.getItem("expire") > new Date())
   if(onedrive_token) {
     window.localStorage.setItem("onedrive_token", onedrive_token);
     window.localStorage.setItem("expire", new Date().addHours(1));
@@ -37,7 +37,7 @@ function initializeOneDrive() {
       location = "https://login.live.com/oauth20_authorize.srf?client_id=000000004816FB64&scope=onedrive.readwrite&response_type=token&redirect_uri=https://splitbox.me"
     }
   }
-  console.log("[DEBUG] OneDrive Token: " + onedrive_token)
+  //console.log("[DEBUG] OneDrive Token: " + onedrive_token)
 }
 
 function uploadFileToOneDrive(name, file, callback) {
@@ -54,7 +54,7 @@ function uploadFileToOneDrive(name, file, callback) {
     success: function(result) {
       $.ajax({
         type: "GET",
-        url:'https://splitbox.me/onedriveproxy?auth=' + encodeURIComponent(onedrive_token) + '&url=' + encodeURIComponent('https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/' + name + ':/content'),
+        url:'https://splitbox.me/onedriveproxy?url=' + encodeURIComponent('https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/' + name + ':/content') + '&auth=' + encodeURIComponent(onedrive_token),
         success: function(result) {
           callback(result)
         }
