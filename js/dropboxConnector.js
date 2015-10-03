@@ -1,6 +1,6 @@
 var dropboxAppKey = "5tj76xeexmiy76h",
     client = null,
-    dropboxIsAuthenticated = false
+    dropboxIsAuthenticated = false;
 
 function initializeDropbox() {
     var hashDict = hashToDict(window.location.hash)
@@ -11,8 +11,6 @@ function initializeDropbox() {
     }else if( window.localStorage.getItem("dropboxToken") != null ){
         initDropboxClient(window.localStorage.getItem("dropboxToken"))
     }
-
-
 }
 
 function initDropboxClient(token){
