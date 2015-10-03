@@ -46,6 +46,7 @@ function downloadFileParts(key, cipher) {
   });
 
   function callback() {
+    console.log(splitfile)
     if(count < 2) {
       return
     }
