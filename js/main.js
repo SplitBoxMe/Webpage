@@ -1,11 +1,15 @@
+var animationInterval = 30;
+var animationStep = 0;
+var animationHandle;
+
 initDropZone();
 
 (function($){
   $(function(){
 
-  	$('select').material_select();
-  	$('.button-collapse').sideNav();
-  	
+	$('select').material_select();
+	$('.button-collapse').sideNav();
+	$('.tooltipped').tooltip({delay: 50});
 	window.dispatchEvent(new Event('resize'));
 
   initializeOneDrive();
@@ -35,7 +39,37 @@ function cloudStorageDisconnected(name) {
 function processFile() {
   $('#modalUpload').openModal();
   setUploadStatus("Preparing file", 0);
-  //$('#modalUpload').closeModal();
+}
+
+function uploadStarted(heading, indeterminate) {
+  if (indeterminate) {
+    // use indeterminate progress
+    setUploadStatus(heading);
+    animationHandle = setInterval(indeterminateUploadUpdate, animationInterval);
+  } else {
+    // progress reporting available
+    setUploadStatus(heading, 0);
+  }
+}
+
+function uploadFinished() {
+  $('#modalUpload').closeModal();
+  clearInterval(animationHandle);
+
+  var shareButton = document.getElementById("shareButton");
+  removeClassName(shareButton, "disabled");
+}
+
+function indeterminateUploadUpdate() {
+  animationStep += 1;
+  if (animationStep > 200) {
+    animationStep = 0;
+  }
+  if (animationStep > 100) {
+    animateUploadStatus(200 - animationStep);
+  } else {
+    animateUploadStatus(animationStep);  
+  }
 }
 
 function setUploadStatus(heading, percentage) {
@@ -45,11 +79,64 @@ function setUploadStatus(heading, percentage) {
   if (heading != null) {
     uploadHeader.innerHTML = heading;
   }
-  uploadDescription.innerHTML = "SplitBox is processing your file, this may takes a few seconds. " + percentage + "% done."
 
+  uploadDescription.innerHTML = "SplitBox is processing your file, this may takes a few seconds. ";
+  if (percentage != null) {
+    uploadDescription.innerHTML += percentage + "% done.";
+    animateUploadStatus(percentage);
+  }
+}
+
+function animateUploadStatus(percentage) {
   var container = document.getElementById("uploadAnimationContainer");
   var leftBox = document.getElementById("boxLeft");
   var rightBox = document.getElementById("boxRight");
+
+  // resize box
+  leftBox.style.height = container.offsetHeight + "px";
+  leftBox.style.width = leftBox.style.height;
+
+  rightBox.style.height = leftBox.style.height;
+  rightBox.style.width = leftBox.style.width;
+
+  // center box
+  var maximumOffset = (leftBox.offsetWidth / 12);
+  var centerOffset = ((container.offsetWidth / 2) - (leftBox.offsetWidth / 2));
+  var percentageOffset = Math.round((percentage * maximumOffset) / 100);
+  
+  leftBox.style.left = (centerOffset - percentageOffset) + "px";
+  rightBox.style.left = (centerOffset + percentageOffset) + "px";
+  rightBox.style.top = (percentageOffset / 2) + "px"
+
+  // rotate
+  var maximumDeg = 20;
+  var deg = Math.round((percentage * maximumDeg) / 100);
+  rightBox.style.webkitTransform = 'rotate('+deg+'deg)'; 
+  rightBox.style.mozTransform    = 'rotate('+deg+'deg)'; 
+  rightBox.style.msTransform     = 'rotate('+deg+'deg)'; 
+  rightBox.style.oTransform      = 'rotate('+deg+'deg)'; 
+  rightBox.style.transform       = 'rotate('+deg+'deg)'; 
+}
+
+function setDownloadStatus(heading, percentage) {
+  var uploadHeader = document.getElementById("downloadHeader");
+  var uploadDescription = document.getElementById("downloadDescription");
+
+  if (heading != null) {
+    uploadHeader.innerHTML = heading;
+  }
+
+  uploadDescription.innerHTML = "We'll download, merge and decrypt your file now. ";
+  if (percentage != null) {
+    uploadDescription.innerHTML += percentage + "% done.";
+    animateDonwloadStatus(percentage);
+  }
+}
+
+function animateDonwloadStatus(percentage) {
+  var container = document.getElementById("downloadAnimationContainer");
+  var leftBox = document.getElementById("boxDownloadLeft");
+  var rightBox = document.getElementById("boxDownloadRight");
   
   container.percentage = percentage;
 
@@ -94,7 +181,9 @@ function initDropZone() {
 
       this.on("complete", function(file) {
         console.log("Dropzone complete");
-        //console.log(document.getElementById("imageDropzone").files.getAcceptedFiles());
+
+        var processButton = document.getElementById("processButton");
+        removeClassName(processButton, "disabled");
       });
       this.on("thumbnail", function(file, dataUrl) {
         console.log("Dropzone thumbnail");
