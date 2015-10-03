@@ -79,11 +79,7 @@ function encrypt(splitfile){
     var current_key = new Uint8Array(1)
     window.crypto.getRandomValues(current_key);
     splitfile.key[cycle] = current_key[0]
-    if((splitfile.key[cycle] + splitfile.plain[cycle]) == 255) {
-      splitfile.cipher[cycle] = 255
-    } else {
-      splitfile.cipher[cycle] = (splitfile.key[cycle] + splitfile.plain[cycle]) % 255
-    }
+    splitfile.cipher[cycle] = (splitfile.key[cycle] + splitfile.plain[cycle]) % 256 + 1
   }
 }
 
