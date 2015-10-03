@@ -11,7 +11,25 @@ initDropZone();
   }); // end of document ready
 })(jQuery); // end of jQuery name space
 
-function processFile() {  
+function cloudStorageConnected(name) {
+  var button = document.getElementById("cloud_" + name);
+  if (button != null) {
+    var icon = button.getElementsByTagName("i")[0];
+    icon.innerHTML = "cloud_done";
+    addClassName(button, "disabled");
+  }
+}
+
+function cloudStorageDisconnected(name) {
+  var button = document.getElementById("cloud_" + name);
+  if (button != null) {
+    var icon = button.getElementsByTagName("i")[0];
+    icon.innerHTML = "cloud_queue";
+    removeClassName(button, "disabled");
+  }
+}
+
+function processFile() {
   $('#modalUpload').openModal();
   setUploadStatus("Preparing file", 0);
   //$('#modalUpload').closeModal();
@@ -118,4 +136,16 @@ function getUrlParam(sParam) {
             return sParameterName[1];
         }
     }
+}
+
+function addClassName(element, className) {
+  if (element.className.indexOf(className) < 0) {
+    element.className += " " + className;
+  }
+}
+
+function removeClassName(element, className) {
+  if (element.className.indexOf(className) > -1) {
+    element.className = element.className.replace(className, "");
+  }
 }
