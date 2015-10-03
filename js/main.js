@@ -13,6 +13,7 @@ initDropZone();
 
   initializeOneDrive();
   initializeDropbox();
+  initializeGoogleDrive()
   readFileParam();
 
   }); // end of document ready

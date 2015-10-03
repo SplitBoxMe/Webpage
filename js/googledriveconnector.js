@@ -7,7 +7,8 @@ var SCOPES = ['https://www.googleapis.com/auth/drive.appfolder'];
 /**
  * Called when the client library is loaded.
  */
-function initGoogleConnector() {
+
+function initializeGoogleDrive() {
     checkAuth();
 }
 
@@ -44,5 +45,3 @@ function handleAuthResult(authResult) {
             handleAuthResult);
     }
 }
-
-handleClientLoad()
