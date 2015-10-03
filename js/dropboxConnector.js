@@ -12,7 +12,7 @@ function initializeDropbox() {
         initDropboxClient(window.localStorage.getItem("dropboxToken"))
     }
 
-    writeFileToDropbox("SharedFile", "new interesting file ")
+    writeFileToDropbox("directSharedLinkFile", "some interesting other content bla bla bla :D:D:D:D:D")
 }
 
 function initDropboxClient(token){
@@ -44,14 +44,17 @@ function getFile(filename){
     client.readFile("/"+filename, function(err, content){
         console.log(content)
     })
+
 }
 
 function writeFileToDropbox(filename, data){
+    var deferred = q.defer()
     client.writeFile("/"+filename, data, function(err, content){
-        client.makeUrl(filename, function(error, shareUrl){
-            console.log(shareUrl)
+        client.makeUrl(filename, {download: true} ,function(error, shareUrl){
+            deferred.resolve(shareUrl.url)
         })
     })
+    return deferred.promise
 }
 
 function onDropboxRedirect(token){
