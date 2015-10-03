@@ -113,6 +113,23 @@
 						<p id="uploadDescription">Your file has been securely uploaded to the cloud storage providers you selected. You can now share the download link. You may want to encrypt the link and add <a href="https://en.wikipedia.org/wiki/Two-factor_authentication" target="_blank">two-factor authentication</a> to make sure that you are in control of who gets access to your file.</p>
 						
 						<a id="encryptLink" href="javascript:encryptLink();" class="primary-color-dark waves-effect waves-light btn"><i class="material-icons left">lock</i>Encrypt Link</a>
+						
+						<div id="sendSMSForm" class="hide">
+							<br/><br/>
+							<form class="col s12">
+								<div class="row">
+									<div class="input-field col s6">
+										<input id="decryptPass" type="text" value="">
+										<label class="active" for="decryptPass">Key</label>
+									</div>
+									<div class="input-field col s6">
+										<input id="phoneNumber" type="text" value="">
+										<label class="active" for="phoneNumber">Phone number</label>
+									</div>
+								</div>
+							</form>
+						</div>
+
 						<br/><br/>
 						<form class="col s12">
 							<div class="row">
