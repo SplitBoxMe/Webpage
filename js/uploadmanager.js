@@ -47,11 +47,12 @@ function handleFileSelect(files) {
         })
 
         function showLink() {
+          console.log('called')
           if(uploads < 2) {
             return
           }
-          console.log('https://splitbox.me/?file=' + btoa(JSON.stringify(links)))
-          console.log((JSON).parse(btoa(JSON.stringify(links))).key)
+          console.log('https://splitbox.me/?file=' + btoa(links.key+'|'+links.cipher))
+          console.log(atob(btoa(links.key+'|'+links.cipher)).split['|'][0])
 
         }
         //saveByteArray([splitfile.cipher], name);
