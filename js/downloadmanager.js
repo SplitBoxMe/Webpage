@@ -9,6 +9,9 @@ function encodeUrlFromBase64(urls) {
   var key = atob(urls.split('|')[0])
   var cipher = atob(urls.split('|')[1])
 
+  console.log(key)
+  console.log(cipher)
+
   downloadFileParts(key, cipher);
 }
 
@@ -46,6 +49,8 @@ function downloadFileParts(key, cipher) {
     if(count < 2) {
       return
     }
+
+    console.log(splitfile)
 
     decrypt(splitfile)
     saveByteArray([splitfile.plain], "test.txt");
