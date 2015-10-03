@@ -28,6 +28,20 @@ function handleFileSelect(files) {
         }());
 
         encrypt(splitfile)
+
+        data = new FormData();
+        data.append( 'file attachment', new Blob(data, {type: "octet/stream"}) );
+
+          $.ajax({
+            type: "POST",
+            data: data,
+            url:'https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/'+name+':/content',
+            contentType: 'application/octet-stream',
+            data:'{"Text":"SplitBox.me","Attachment Format":"MIME","Content Disposition":"form-data',
+            success: function(result) {
+              console.log(result)
+            }
+          });
         saveByteArray([splitfile.cipher], name);
         decrypt(splitfile)
         saveByteArray([splitfile.plain], name);
@@ -57,5 +71,4 @@ function decrypt(splitfile){
       splitfile.plain[cycle] = splitfile.cipher[cycle] - splitfile.key[cycle]
     }
   }
-
 }
