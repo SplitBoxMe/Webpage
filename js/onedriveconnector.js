@@ -19,7 +19,7 @@ function initializeOneDrive() {
     if(window.localStorage.getItem("location_restore")) {
       var l = window.localStorage.getItem("location_restore") + ''
       console.log(l)
-      window.localStorage.setItem("location_restore", undefined)
+      window.localStorage.removeItem("location_restore")
       location = l
     }
 
@@ -27,9 +27,8 @@ function initializeOneDrive() {
     if(window.localStorage.getItem("onedrive_token") &&  window.localStorage.getItem("expire") > new Date()) {
       onedrive_token = window.localStorage.getItem("onedrive_token");
     } else if(window.localStorage.getItem("onedrive_token")){
-      window.localStorage.setItem("onedrive_token", undefined)
+      window.localStorage.removeItem("onedrive_token")
       window.localStorage.setItem("location_restore", location.href)
-      console.log(location.href)
       location = "https://login.live.com/oauth20_authorize.srf?client_id=000000004816FB64&scope=onedrive.readwrite&response_type=token&redirect_uri=https://splitbox.me"
     }
   }
