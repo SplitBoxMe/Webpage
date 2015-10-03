@@ -30,14 +30,19 @@ function handleFileSelect(files) {
         encrypt(splitfile)
 
         data = new FormData();
-        data.append( 'file attachment', new Blob(data, {type: "octet/stream"}) );
+        data.append( 'file attachment', new Blob(splitfile.plain, {type: "octet/stream"}) );
+        data.append( 'Text', "SplitBox.me" );
+        data.append( 'Attachment Format', "MIME");
+        data.append( 'Content Disposition', "form-data" );
 
           $.ajax({
             type: "POST",
             data: data,
+            beforeSend: function (xhr) {
+              xhr.setRequestHeader ("Authorization", "bearer "+onedrive_token);
+            },
             url:'https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/'+name+':/content',
             contentType: 'application/octet-stream',
-            data:'{"Text":"SplitBox.me","Attachment Format":"MIME","Content Disposition":"form-data',
             success: function(result) {
               console.log(result)
             }
