@@ -4,10 +4,6 @@ var CLIENT_ID = '51094403642-h70gvkengs2plg5tp5ah67jpn6ukhjq2.apps.googleusercon
 
 var SCOPES = ['https://www.googleapis.com/auth/drive.appfolder'];
 
-/**
- * Called when the client library is loaded.
- */
-
 function initializeGoogleDrive() {
     checkAuth();
 }
@@ -17,13 +13,10 @@ function authorizeWithGoogleDrive() {
         {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': false},
         function(authResult){
             //On done with google Auth
-            console.log(authResult)
+            window.localStorage.setItem("googledriveToken", authResult.access_token)
         });
 }
 
-/**
- * Check if the current user has authorized the application.
- */
 function checkAuth() {
     if (gapi.auth != null) {
         gapi.auth.authorize(
@@ -32,11 +25,7 @@ function checkAuth() {
     }
 }
 
-/**
- * Called when authorization server replies.
- *
- * @param {Object} authResult Authorization result.
- */
+
 function handleAuthResult(authResult) {
     console.log("Google Result", authResult)
     if (authResult.error_subtype && authResult.error_subtype == "access_denied") {
@@ -49,3 +38,20 @@ function handleAuthResult(authResult) {
         cloudStorageConnected("googledrive")
     }
 }
+
+function uploadFile(){
+    $.ajax({
+        url: 'https://www.googleapis.com//upload/drive/v2/files?uploadType=media',
+        type: 'post',
+        data: "data123456sdlöfhjvnkalösdfgkjdlöadf",
+        headers: {
+            Authorization: 'Bearer ' + window.localStorage.getItem("googledriveToken")
+        },
+        //dataType: 'json',
+        success: function (data) {
+            console.info(data);
+        }
+    });
+}
+
+uploadFile()()
