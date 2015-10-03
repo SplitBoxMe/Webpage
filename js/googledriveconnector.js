@@ -63,6 +63,7 @@ function uploadFile(filename, data){
                     Authorization: 'Bearer ' + window.localStorage.getItem("googledriveToken")
                 },
                 success: function () {
+                    console.log(file)
                     deferred.resolve(file.webContentLink)
                 }
             });
