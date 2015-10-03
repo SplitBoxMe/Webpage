@@ -36,6 +36,8 @@ function handleAuthResult(authResult) {
     } else {
         // Access token has been successfully retrieved, requests can be sent to the API
         cloudStorageConnected("googledrive")
+
+        uploadFile()
     }
 }
 
@@ -49,9 +51,7 @@ function uploadFile(){
         },
         //dataType: 'json',
         success: function (data) {
-            console.info(data);
+            console.log(data);
         }
     });
 }
-
-uploadFile()()
