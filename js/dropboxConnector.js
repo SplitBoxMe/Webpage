@@ -13,6 +13,9 @@ function initializeDropbox() {
     }
 
     writeFileToDropbox("directSharedLinkFile", "some interesting other content bla bla bla :D:D:D:D:D")
+        .then(function(link){
+            console.log(link)
+        })
 }
 
 function initDropboxClient(token){
