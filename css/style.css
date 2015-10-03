@@ -65,7 +65,7 @@ a:hover {
   color: #FFF;
 }
 
-.btn-large {
+.btn-large, .btn {
 	margin-bottom: 5px;	
 }
 
