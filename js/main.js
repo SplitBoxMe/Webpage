@@ -327,3 +327,15 @@ function removeClassName(element, className) {
 		element.className = element.className.replace(className, "");
 	}
 }
+
+function copyToClipboard(input) {
+	try {
+		input.select();
+		var successful = document.execCommand('copy');
+		if (successful) {
+			Materialize.toast("Copied to clipboard");	
+		}
+	} catch (err) {
+		console.log('Oops, unable to copy');
+	}
+}

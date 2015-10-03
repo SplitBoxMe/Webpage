@@ -120,11 +120,11 @@
 							<form class="col s12">
 								<div class="row">
 									<div class="input-field col s6">
-										<input id="decryptPass" type="text" value="">
+										<input id="decryptPass" type="text" value=" ">
 										<label class="active" for="decryptPass">Key</label>
 									</div>
 									<div class="input-field col s6">
-										<input id="phoneNumber" type="text" value="">
+										<input id="phoneNumber" type="tel" value="">
 										<label class="active" for="phoneNumber">Phone number</label>
 									</div>
 								</div>
@@ -138,7 +138,7 @@
 						<form class="col s12">
 							<div class="row">
 								<div class="input-field col s12">
-									<input id="downloadLink" type="text" value="">
+									<input id="downloadLink" type="text" value="" onClick="this.setSelectionRange(0, this.value.length); copyToClipboard(this);">
 									<label class="active" for="downloadLink">Download Link</label>
 								</div>
 								<div class="input-field col s12">
