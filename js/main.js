@@ -79,6 +79,47 @@ function setUploadStatus(heading, percentage) {
   rightBox.style.transform       = 'rotate('+deg+'deg)'; 
 }
 
+function setDownloadStatus(heading, percentage) {
+  var uploadHeader = document.getElementById("downloadHeader");
+  var uploadDescription = document.getElementById("downloadDescription");
+
+  if (heading != null) {
+    uploadHeader.innerHTML = heading;
+  }
+  uploadDescription.innerHTML = "We'll download, merge and decrypt your file now. " + percentage + "% done."
+
+  var container = document.getElementById("downloadAnimationContainer");
+  var leftBox = document.getElementById("boxDownloadLeft");
+  var rightBox = document.getElementById("boxDownloadRight");
+  
+  container.percentage = percentage;
+
+  // resize box
+  leftBox.style.height = container.offsetHeight + "px";
+  leftBox.style.width = leftBox.style.height;
+
+  rightBox.style.height = leftBox.style.height;
+  rightBox.style.width = leftBox.style.width;
+
+  // center box
+  var maximumOffset = (leftBox.offsetWidth / 12);
+  var centerOffset = ((container.offsetWidth / 2) - (leftBox.offsetWidth / 2));
+  var percentageOffset = Math.round((percentage * maximumOffset) / 100);
+  
+  leftBox.style.left = (centerOffset - percentageOffset) + "px";
+  rightBox.style.left = (centerOffset + percentageOffset) + "px";
+  rightBox.style.top = (percentageOffset / 2) + "px"
+
+  // rotate
+  var maximumDeg = 20;
+  var deg = Math.round((percentage * maximumDeg) / 100);
+  rightBox.style.webkitTransform = 'rotate('+deg+'deg)'; 
+  rightBox.style.mozTransform    = 'rotate('+deg+'deg)'; 
+  rightBox.style.msTransform     = 'rotate('+deg+'deg)'; 
+  rightBox.style.oTransform      = 'rotate('+deg+'deg)'; 
+  rightBox.style.transform       = 'rotate('+deg+'deg)'; 
+}
+
 function initDropZone() {
   console.log("Initializing drop zone");
 
