@@ -27,6 +27,10 @@ a:hover {
   color: #546E7A;
 }
 
+.container {
+  padding-top: 20px;
+}
+
 #setupCanvasWrapper {
   width: 100%;
   height: 250px;
