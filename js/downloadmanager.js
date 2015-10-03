@@ -68,14 +68,22 @@ function downloadFileParts(key, cipher, name) {
     key: ''
   }
 
-  getFile(key).then(function(result){
+  var progress1 = 0
+  var progress2 = 0
+  getFile(key, function(value) {
+    progress1 = value/2
+    setDownloadStatus(null, progress1+progress2);
+  }).then(function(result){
     console.log("Key download done")
     splitfile.key = result
     count++
     callback(result)
   })
 
-  getFile(cipher).then(function(result){
+  getFile(cipher, function(value) {
+    progress2 = value/2
+    setDownloadStatus(null, progress1+progress2);
+  }).then(function(result){
       console.log("Cipher download done")
       splitfile.cipher = result
       count++

@@ -39,7 +39,7 @@ function getFiles(){
 }
 
 //Call this function with the publicly shared dropbox Link.
-function getFile(path){
+function getFile(path, progressFunction){
     //client.readFile("/"+filename, function(err, content){
     //    console.log(content)
     //})
@@ -48,6 +48,12 @@ function getFile(path){
     var xhr = new XMLHttpRequest();
     xhr.open('GET', path, true);
     xhr.responseType = 'arraybuffer';
+    xhr.addEventListener("progress", function(evt) {
+        if (evt.lengthComputable) {
+            var percentComplete = evt.loaded / evt.total;
+            progressFunction(percentComplete)
+        }
+    }, false);
 
     xhr.onload = function(e) {
         var uInt8Array = new Uint8Array(this.response);
