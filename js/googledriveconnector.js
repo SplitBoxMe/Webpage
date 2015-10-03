@@ -17,7 +17,8 @@ function authorizeWithGoogleDrive() {
         {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': false},
         function(authResult){
             //On done with google Auth
-            console.log(authResult)
+            cloudStorageConnected("googledrive");
+            console.log(authResult);
         });
 }
 
