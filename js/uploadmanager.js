@@ -8,94 +8,94 @@ function handleFileSelect(files) {
 		var tmpName = Math.random().toString(36).substring(7);
 		for (var i = 0, f; f = files[i]; i++) {
 			var reader = new FileReader();
-      // Closure to capture the file information.
-      reader.onload = (function(theFile) {
-      	return function(e) {
-      		var plain = new Uint8Array(e.target.result);
-      		var key = new Uint8Array(plain.length)
+	  // Closure to capture the file information.
+	  reader.onload = (function(theFile) {
+		return function(e) {
+			var plain = new Uint8Array(e.target.result);
+			var key = new Uint8Array(plain.length)
 
-      		var splitfile = {
-      			plain: plain,
-      			key: key
-      		}
+			var splitfile = {
+				plain: plain,
+				key: key
+			}
 
-      		var saveByteArray = (function () {
-      			var a = document.createElement("a");
-      			document.body.appendChild(a);
-      			a.style = "display: none";
-      			return function (data, name) {
-      				var blob = new Blob(data, {type: "octet/stream"}),
-      				url = window.URL.createObjectURL(blob);
-      				a.href = url;
-      				a.download = name;
-      				a.click();
-      				window.URL.revokeObjectURL(url);
-      			};
-      		}());
+			var saveByteArray = (function () {
+				var a = document.createElement("a");
+				document.body.appendChild(a);
+				a.style = "display: none";
+				return function (data, name) {
+					var blob = new Blob(data, {type: "octet/stream"}),
+					url = window.URL.createObjectURL(blob);
+					a.href = url;
+					a.download = name;
+					a.click();
+					window.URL.revokeObjectURL(url);
+				};
+			}());
 
-      		encrypt(splitfile)
+			encrypt(splitfile)
 
-      		setUploadStatus("Uploading file");
+			setUploadStatus("Uploading file");
 
-      		var links = {
-      			key: '',
-      			cipher: ''
-      		}
+			var links = {
+				key: '',
+				cipher: ''
+			}
 
-      		if(googledriveIsAuthenticated && dropboxIsAuthenticated) {
-      			uploadFileToGoogleDrive(tmpName, splitfile.key).then(function (result) {
-      				links.key = result
-      				showLink()
-      			})
+			if(googledriveIsAuthenticated && dropboxIsAuthenticated) {
+				uploadFileToGoogleDrive(tmpName, splitfile.key).then(function (result) {
+					links.key = result
+					showLink()
+				})
 
-      			writeFileToDropbox(tmpName, splitfile.cipher, function(cipherResult) {
-      				links.cipher = cipherResult
-      				showLink()
-      			})
-      		} else if(googledriveIsAuthenticated && onedriveIsAuthenticated) {
-      			uploadFileToGoogleDrive(tmpName, splitfile.key).then(function (result) {
-      				links.key = result
-      				showLink()
-      			})
+				writeFileToDropbox(tmpName, splitfile.cipher, function(cipherResult) {
+					links.cipher = cipherResult
+					showLink()
+				})
+			} else if(googledriveIsAuthenticated && onedriveIsAuthenticated) {
+				uploadFileToGoogleDrive(tmpName, splitfile.key).then(function (result) {
+					links.key = result
+					showLink()
+				})
 
-      			uploadFileToOneDrive(tmpName, splitfile.cipher, function(cipherResult) {
-      				links.cipher = cipherResult
-      				showLink()
-      			})
-      		} else {
-      			writeFileToDropbox(tmpName, splitfile.key).then(function (result) {
-      				links.key = result
-      				showLink()
-      			})
+				uploadFileToOneDrive(tmpName, splitfile.cipher, function(cipherResult) {
+					links.cipher = cipherResult
+					showLink()
+				})
+			} else {
+				writeFileToDropbox(tmpName, splitfile.key).then(function (result) {
+					links.key = result
+					showLink()
+				})
 
-      			uploadFileToOneDrive(tmpName, splitfile.cipher, function(cipherResult) {
-      				links.cipher = cipherResult
-      				showLink()
-      			})
-      		}
+				uploadFileToOneDrive(tmpName, splitfile.cipher, function(cipherResult) {
+					links.cipher = cipherResult
+					showLink()
+				})
+			}
 
 
-      		function showLink() {
-      			if (links.key.length > 0 && links.cipher.length > 0) {
-      				uploadFinished();
-      				shareFile();
+			function showLink() {
+				if (links.key.length > 0 && links.cipher.length > 0) {
+					uploadFinished();
+					shareFile();
 
-      				var downloadUrl = 'https://splitbox.me/?file=' + encodeURIComponent(btoa(links.key))+'|'+encodeURIComponent(btoa(links.cipher))+'|'+encodeURIComponent(btoa(name))
-      				$('#downloadLink')[0].value = downloadUrl
-      				$('#downloadLink').siblings('label, i').addClass('active');
-              //console.log(atob(btoa(links.key)+'|'+btoa(links.cipher)).split['|'][0])
-          }
-      }
-          //saveByteArray([splitfile.cipher], name);
-          //decrypt(splitfile)
-          //saveByteArray([splitfile.plain], name);
-      };
-  })(f);
+					var downloadUrl = 'https://splitbox.me/?file=' + encodeURIComponent(btoa(links.key))+'|'+encodeURIComponent(btoa(links.cipher))+'|'+encodeURIComponent(btoa(name))
+					$('#downloadLink')[0].value = downloadUrl;
+					$('#downloadLink').siblings('label, i').addClass('active');
+			  //console.log(atob(btoa(links.key)+'|'+btoa(links.cipher)).split['|'][0])
+		  }
+	  }
+			  //saveByteArray([splitfile.cipher], name);
+			  //decrypt(splitfile)
+			  //saveByteArray([splitfile.plain], name);
+		  };
+		})(f);
 
-      // Read in the image file as a data URL.
-      reader.readAsArrayBuffer(f);
-  }
-}, 1000)
+		  // Read in the image file as a data URL.
+		  reader.readAsArrayBuffer(f);
+		}
+	}, 1000)
 }
 
 function encrypt(splitfile){

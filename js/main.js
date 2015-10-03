@@ -46,6 +46,13 @@ function shareFile() {
 	$('#modalShare').openModal();
 }
 
+function shareLinkViaMail() {
+	var mail = document.getElementById("mail").value;
+	var link = document.getElementById("encryptLink").value;
+
+	sendMail(mail, subject, message);
+}
+
 function processFile() {
 	$('#modalUpload').openModal();
 	setUploadStatus("Preparing file", 0);
