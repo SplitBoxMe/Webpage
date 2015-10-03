@@ -19,11 +19,11 @@ p {
 }
 
 a {
-  color: #795548;
+  color: #CDDC39;
 }
 
 a:hover {
-  color: #795548;
+  color: #CDDC39;
 }
 
 #setupCanvasWrapper {
@@ -62,7 +62,7 @@ a:hover {
 }
 
 .btn-large:hover {
-  color: #FFC107;
+  color: #CDDC39;
 }
 
 .btn-large {
@@ -117,11 +117,11 @@ a:hover {
 }
 
 .card .card-action a {
-	color: #663fb4;
+	color: #CDDC39;
 }
 
 .card .card-action a:hover {
-	color: #5133a6;
+	color: #CDDC39;
 }
 
 @media only screen and (max-width : 992px) {
@@ -178,33 +178,33 @@ footer.page-footer {
 * Corporate design colors
 **/
 .primary-color {
-  background-color: #795548 !important;
+  background-color: #009688 !important;
 }
 
 .primary-color-dark {
-  background-color: #63443a !important;
+  background-color: #00796b !important;
 }
 
 .primary-color-light {
-  background-color: #795548 !important;
+  background-color: #4db6ac !important;
 }
 
 .accent-color {
-  background-color: #FFC107 !important;
+  background-color: #CDDC39 !important;
 }
 
 .primary-color-text {
-  color: #795548 !important;
+  color: #009688 !important;
 }
 
 .primary-color-dark-text {
-  color: #63443a !important;
+  color: #00796b !important;
 }
 
 .primary-color-light-text {
-  color: #795548 !important;
+  color: #4db6ac !important;
 }
 
 .accent-color-text {
-  color: #FFC107 !important;
+  color: #CDDC39 !important;
 }
