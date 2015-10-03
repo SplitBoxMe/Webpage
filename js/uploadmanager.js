@@ -41,7 +41,7 @@ function handleFileSelect(files) {
           cipher: ''
         }
 
-        writeFileToDropbox(tmpName, splitfile.key).then(function(result) {
+        uploadFileToGoogleDrive(tmpName, splitfile.key).then(function(result) {
           links.key = result
           showLink()
         })

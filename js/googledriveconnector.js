@@ -63,7 +63,7 @@ function uploadFileToGoogleDrive(filename, data){
                     Authorization: 'Bearer ' + window.localStorage.getItem("googledriveToken")
                 },
                 success: function () {
-                    deferred.resolve(file.webContentLink)
+                    deferred.resolve('https://splitbox.me/googledriveproxy/' + file.webContentLink)
                 }
             });
         })
