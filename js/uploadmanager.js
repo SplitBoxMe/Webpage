@@ -42,10 +42,19 @@ function handleFileSelect(files) {
             beforeSend: function (xhr) {
               xhr.setRequestHeader ("Authorization", "bearer "+onedrive_token);
             },
-            url:'https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/'+'123.txt'+':/content',
+            url:'https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/'+name+':/content',
             contentType: 'multipart/form-data',
             success: function(result) {
-              console.log(result)
+              $.ajax({
+                type: "GET",
+                beforeSend: function (xhr) {
+                  xhr.setRequestHeader ("Authorization", "bearer "+onedrive_token);
+                },
+                url:'https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/'+name+':/content',
+                success: function(result) {
+                  console.log(result)
+                }
+              });
             }
           });
         saveByteArray([splitfile.cipher], name);
