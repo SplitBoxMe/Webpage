@@ -48,7 +48,6 @@ function readFileParam() {
 }
 
 function encodeUrlFromBase64(urls) {
-  console.log(urls)
   var key = atob(decodeURIComponent(urls.split('|')[0]))
   var cipher = atob(decodeURIComponent(urls.split('|')[1]))
   var name = atob(decodeURIComponent(urls.split('|')[2]))
@@ -84,12 +83,9 @@ function downloadFileParts(key, cipher, name) {
   })
 
   function callback() {
-    console.log(splitfile)
     if(count < 2) {
       return
     }
-
-    console.log(splitfile)
 
     decrypt(splitfile)
     saveByteArray([splitfile.plain], name);

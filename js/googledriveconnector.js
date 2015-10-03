@@ -3,7 +3,7 @@
 var CLIENT_ID = '51094403642-h70gvkengs2plg5tp5ah67jpn6ukhjq2.apps.googleusercontent.com',
     googledriveIsAuthenticated = false
 
-var SCOPES = ['https://www.googleapis.com/auth/drive.appfolder', 'https://www.googleapis.com/auth/drive.file', "https://www.googleapis.com/auth/drive"];
+var SCOPES = ['https://www.googleapis.com/auth/drive.appfolder', 'https://www.googleapis.com/auth/drive.file' ];
 
 function initializeGoogleDrive() {
     checkAuth();
@@ -16,7 +16,7 @@ function authorizeWithGoogleDrive() {
             //On done with google Auth
             window.localStorage.setItem("googledriveToken", authResult.access_token)
             cloudStorageConnected("googledrive");
-            googleDriveIsAuthenticated = true
+            googledriveIsAuthenticated = true
         });
 }
 
@@ -38,7 +38,7 @@ function handleAuthResult(authResult) {
     } else {
         // Access token has been successfully retrieved, requests can be sent to the API
         cloudStorageConnected("googledrive")
-        googleDriveIsAuthenticated = true
+        googledriveIsAuthenticated = true
     }
 }
 
@@ -63,7 +63,7 @@ function uploadFileToGoogleDrive(filename, data){
                     Authorization: 'Bearer ' + window.localStorage.getItem("googledriveToken")
                 },
                 success: function () {
-                    deferred.resolve(file.webContentLink)
+                    deferred.resolve('https://splitbox.me/googledriveproxy/' + file.webContentLink)
                 }
             });
         })
