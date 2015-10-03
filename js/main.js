@@ -52,8 +52,8 @@ function encryptLink() {
 
 function decryptLink(linkEncrypted, passphrase){
 	var encrypted = CryptoJS.AES.decrypt(linkEncrypted, passphrase)
-	console.log(encrypted.toString())
-	return encrypted.toString()
+	console.log(encrypted.toString(CryptoJS.enc.Utf8))
+	return encrypted.toString(CryptoJS.enc.Utf8)
 }
 
 function generatePassphrase(){
