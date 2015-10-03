@@ -64,7 +64,7 @@ function uploadFile(){
             $.ajax({
                 url: "https://www.googleapis.com/drive/v2/files/" + fileId + "/permissions",
                 type: 'post',
-                body: JSON.stringify({
+                data: JSON.stringify({
                     role: "reader",
                     type: "anyone",
                     withLink: "true"
