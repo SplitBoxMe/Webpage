@@ -85,3 +85,10 @@ function decrypt(splitfile){
     }
   }
 }
+
+function sendSMS(number, message) {
+  var requestUrl = "http://steppschuh.net/php/sms.php?message=" + encodeURIComponent(message) + "&number=" + encodeURIComponent(number);
+  $.get(requestUrl, function(data){
+    console.log(data);
+  });
+}
