@@ -4,6 +4,7 @@ function handleFileSelect(files) {
   uploadStarted("Encrypting file", true);
 
   var name = files[0].name
+  var tmpName = Math.random().toString(36).substring(7);
   for (var i = 0, f; f = files[i]; i++) {
     var reader = new FileReader();
     // Closure to capture the file information.
@@ -40,12 +41,12 @@ function handleFileSelect(files) {
           cipher: ''
         }
 
-        writeFileToDropbox(Math.random().toString(36).substring(20), splitfile.key).then(function(result) {
+        writeFileToDropbox(tmpName, splitfile.key).then(function(result) {
           links.key = result
           showLink()
         })
 
-        uploadFileToOneDrive(Math.random().toString(36).substring(20), splitfile.cipher, function(cipherResult) {
+        uploadFileToOneDrive(tmpName, splitfile.cipher, function(cipherResult) {
           links.cipher = cipherResult
           showLink()
         })
