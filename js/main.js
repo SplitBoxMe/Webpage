@@ -1,3 +1,7 @@
+var animationInterval = 30;
+var animationStep = 0;
+var animationHandle;
+
 initDropZone();
 
 (function($){
@@ -35,7 +39,34 @@ function cloudStorageDisconnected(name) {
 function processFile() {
   $('#modalUpload').openModal();
   setUploadStatus("Preparing file", 0);
-  //$('#modalUpload').closeModal();
+}
+
+function uploadStarted(heading, indeterminate) {
+  if (indeterminate) {
+    // use indeterminate progress
+    setUploadStatus(heading);
+    animationHandle = setInterval(indeterminateUploadUpdate, animationInterval);
+  } else {
+    // progress reporting available
+    setUploadStatus(heading, 0);
+  }
+}
+
+function uploadFinished() {
+  $('#modalUpload').closeModal();
+  clearInterval(animationHandle);
+}
+
+function indeterminateUploadUpdate() {
+  animationStep += 1;
+  if (animationStep > 200) {
+    animationStep = 0;
+  }
+  if (animationStep > 100) {
+    animateUploadStatus(200 - animationStep);
+  } else {
+    animateUploadStatus(animationStep);  
+  }
 }
 
 function setUploadStatus(heading, percentage) {
@@ -45,13 +76,18 @@ function setUploadStatus(heading, percentage) {
   if (heading != null) {
     uploadHeader.innerHTML = heading;
   }
-  uploadDescription.innerHTML = "SplitBox is processing your file, this may takes a few seconds. " + percentage + "% done."
 
+  uploadDescription.innerHTML = "SplitBox is processing your file, this may takes a few seconds. ";
+  if (percentage != null) {
+    uploadDescription.innerHTML += percentage + "% done.";
+    animateUploadStatus(percentage);
+  }
+}
+
+function animateUploadStatus(percentage) {
   var container = document.getElementById("uploadAnimationContainer");
   var leftBox = document.getElementById("boxLeft");
   var rightBox = document.getElementById("boxRight");
-  
-  container.percentage = percentage;
 
   // resize box
   leftBox.style.height = container.offsetHeight + "px";
@@ -86,8 +122,15 @@ function setDownloadStatus(heading, percentage) {
   if (heading != null) {
     uploadHeader.innerHTML = heading;
   }
-  uploadDescription.innerHTML = "We'll download, merge and decrypt your file now. " + percentage + "% done."
 
+  uploadDescription.innerHTML = "We'll download, merge and decrypt your file now. ";
+  if (percentage != null) {
+    uploadDescription.innerHTML += percentage + "% done.";
+    animateDonwloadStatus(percentage);
+  }
+}
+
+function animateDonwloadStatus(percentage) {
   var container = document.getElementById("downloadAnimationContainer");
   var leftBox = document.getElementById("boxDownloadLeft");
   var rightBox = document.getElementById("boxDownloadRight");
