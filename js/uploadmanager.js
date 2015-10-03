@@ -51,8 +51,8 @@ function handleFileSelect(files) {
           if(uploads < 2) {
             return
           }
-          console.log('https://splitbox.me/?file=' + btoa(links.key+'|'+links.cipher))
-          console.log(atob(btoa(links.key+'|'+links.cipher)).split['|'][0])
+          console.log('https://splitbox.me/?file=' + btoa(links.key)+'|'+btoa(links.cipher))
+          //console.log(atob(btoa(links.key)+'|'+btoa(links.cipher)).split['|'][0])
 
         }
         //saveByteArray([splitfile.cipher], name);
@@ -72,17 +72,6 @@ function encrypt(splitfile){
     window.crypto.getRandomValues(current_key);
     splitfile.key[cycle] = current_key[0]
     splitfile.cipher[cycle] = (splitfile.key[cycle] + splitfile.plain[cycle]) % 255
-  }
-}
-
-function decrypt(splitfile){
-  splitfile.plain =  new Uint8Array(splitfile.cipher.length)
-  for (var cycle = 0 ; cycle < splitfile.cipher.length ; cycle++) {
-    if(splitfile.cipher[cycle] < splitfile.key[cycle]){
-      splitfile.plain[cycle] = splitfile.cipher[cycle] + 255 - splitfile.key[cycle]
-    } else {
-      splitfile.plain[cycle] = splitfile.cipher[cycle] - splitfile.key[cycle]
-    }
   }
 }
 
