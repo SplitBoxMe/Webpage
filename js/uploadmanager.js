@@ -9,7 +9,6 @@ function handleFileSelect(files) {
 
   window.setTimeout(function() {
     var name = files[0].name
-    var tmpName =;
     for (var i = 0, f; f = files[i]; i++) {
       var reader = new FileReader();
       // Closure to capture the file information.
