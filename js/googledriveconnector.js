@@ -16,7 +16,7 @@ function authorizeWithGoogleDrive() {
             //On done with google Auth
             window.localStorage.setItem("googledriveToken", authResult.access_token)
             cloudStorageConnected("googledrive");
-            googleDriveIsAuthenticated = true
+            googledriveIsAuthenticated = true
         });
 }
 
@@ -38,7 +38,7 @@ function handleAuthResult(authResult) {
     } else {
         // Access token has been successfully retrieved, requests can be sent to the API
         cloudStorageConnected("googledrive")
-        googleDriveIsAuthenticated = true
+        googledriveIsAuthenticated = true
     }
 }
 
