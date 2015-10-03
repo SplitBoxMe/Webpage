@@ -83,7 +83,10 @@ function sharePassViaSMS() {
 	var decryptPass = document.getElementById("decryptPass").value;
 	var message = "SplitBox key: " + decryptPass;
 	
-	sendSMS(number, message)
+	sendSMS(number, message);
+	
+	var sendSMSButton = document.getElementById("sendSMS");
+	addClassName(sendSMSButton, "disabled");
 }
 
 function processFile() {
