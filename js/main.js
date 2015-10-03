@@ -69,8 +69,8 @@ function shareLinkViaMail() {
 	var mail = document.getElementById("mailAddress").value;
 	var link = document.getElementById("downloadLink").value;
 	var subject = "File shared via SplitBox";
-	var message = "Hey,\nsomeone wants to share a file with you:<br><br>" + document.getElementById("mailMessage").innerHTML;
-	message += "<br><br>Download: " + "<a href=\"" + link + "\">" + link + "</a>";
+	var message = "Hey,<br/>someone wants to share a file with you:<br/><br/>" + document.getElementById("mailMessage").innerHTML;
+	message += "<br/><br/>Download: " + link;
 
 	sendMail(mail, subject, message);
 }
