@@ -25,7 +25,7 @@ function initializeOneDrive() {
     }
 
   } else {
-    if(window.localStorage.getItem("onedrive_token") &&  window.localStorage.getItem("expire") > new Date()) {
+    if(window.localStorage.getItem("onedrive_token") &&  new Date(window.localStorage.getItem("expire")) > new Date()) {
       onedrive_token = window.localStorage.getItem("onedrive_token");
     } else if(window.localStorage.getItem("onedrive_token")){
       window.localStorage.removeItem("onedrive_token")
