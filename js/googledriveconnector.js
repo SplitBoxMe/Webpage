@@ -15,8 +15,9 @@ function initializeGoogleDrive() {
 function authorizeWithGoogleDrive() {
     gapi.auth.authorize(
         {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': false},
-        function(){
+        function(authResult){
             //On done with google Auth
+            console.log(authResult)
         });
 }
 
