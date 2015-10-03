@@ -31,7 +31,6 @@ function checkAuth() {
 
 
 function handleAuthResult(authResult) {
-    console.log("Google Result", authResult)
     if (authResult.error_subtype && authResult.error_subtype == "access_denied") {
         // No access token could be retrieved, force the authorization flow.
         gapi.auth.authorize(
@@ -45,6 +44,7 @@ function handleAuthResult(authResult) {
     }
 }
 
+//data has to be of type UInt8Array
 function uploadFile(filename, data){
     var deferred = Q.defer()
 
@@ -119,11 +119,4 @@ function addFile(filename, byteArray){
     }
 
     return deferred.promise
-}
-
-function testUpload(){
-    uploadFile("Testfile123",  new Uint8Array(100))
-        .then(function(link){
-            console.log("Download file here: ", link)
-        })
 }
