@@ -25,26 +25,18 @@ function downloadFileParts(key, cipher) {
     key: ''
   }
 
-  $.ajax({
-    type: "GET",
-    url:key,
-    success: function(result) {
-      console.log("Key download done")
-      splitfile.key = result
-      count++
-      callback(result)
-    }
+  $.get(key, function(result) {
+    console.log("Key download done")
+    splitfile.key = result
+    count++
+    callback(result)
   });
 
-  $.ajax({
-    type: "GET",
-    url:cipher,
-    success: function(result) {
-      console.log("Cipher download done")
-      splitfile.cipher = result
-      count++
-      callback(result)
-    }
+  $.get(cipher, function(result) {
+    console.log("Cipher download done")
+    splitfile.cipher = result
+    count++
+    callback(result)
   });
 
   function callback() {
