@@ -14,13 +14,13 @@
 		<script src="js/dropboxConnector.js" type="text/javascript"></script>
 	</head>
 	
-	<body onload="loaded();">
+	<body>
 		<header>
 			<nav class="primary-color" role="navigation">
 				<div class="nav-wrapper container">
 					
 					<a id="logo-left-container" href="#" class="brand-logo hide-on-small-only">
-						<img src="images/logo.png" />
+						<img src="images/logo_white.png" />
 					</a>
 
 					<ul class="right hide-on-med-and-down">
@@ -40,11 +40,26 @@
 
 			<div class="container">
 				<h4>SplitBox.me</h4>
-				<p>Lorem Ipsum</p>
-				<input type="file" id="files" name="files[]" multiple />
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ex nibh, tempor sed quam a, tincidunt molestie quam. Donec pharetra eleifend blandit. Cras gravida metus dignissim ex finibus, non sodales lacus iaculis. Maecenas vestibulum ultricies tellus, tincidunt mattis mauris auctor molestie.</p>
+
 				<button onclick="connectToDropbox()">Connect to dropbox</button>
 				<button onclick="getFile('hello.txt')">Get Files</button>
 				<button onclick="authorize()">authorize</button>
+				<div class="divider"></div>
+
+				<div class="section">
+					<h5>Select your file</h5>
+					<p id="compatibilityWarning" class="hide"><span class="red-text">Compatibility warning:</span> This app has been developed using new web technologies to increase performance and save server costs. Not all browsers support these technologies yet. Please switch to <a href="http://www.google.com/chrome/" target="_blnak">Chrome</a> if you are having issues.</p>
+					<form action="#" class="dropzone" id="imageDropzone"></form>
+				</div>
+
+                                <a href="https://login.live.com/oauth20_authorize.srf?client_id=000000004816FB64&scope=onedrive.appfolder&response_type=code&redirect_uri=http://localhost:8000">SIGN IN WITH ONEDRIVE</a>
+
+				<div class="divider"></div>
+				<div class="section">
+					<h5>Debugging stuff</h5>
+					<input type="file" id="files" name="files[]" multiple />
+				</div>
 			</div>
 
 		</main>

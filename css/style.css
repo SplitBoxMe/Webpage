@@ -19,11 +19,11 @@ p {
 }
 
 a {
-  color: #009688;
+  color: #795548;
 }
 
 a:hover {
-  color: #00796b;
+  color: #795548;
 }
 
 #setupCanvasWrapper {
@@ -37,9 +37,14 @@ a:hover {
   height: 500px;
 }
 
-#logo-left-container, #logo-center-container {
-  padding-top: 10px;
-  overflow: hidden;
+#logo-left-container {
+  height: 100%;
+  padding: 5px;
+}
+
+#logo-left-container img {
+    height: 100%;
+    width: auto;
 }
 
 .button-collapse {
@@ -164,33 +169,33 @@ footer.page-footer {
 * Corporate design colors
 **/
 .primary-color {
-  background-color: #009688 !important;
+  background-color: #795548 !important;
 }
 
 .primary-color-dark {
-  background-color: #00796b !important;
+  background-color: #63443a !important;
 }
 
 .primary-color-light {
-  background-color: #4db6ac !important;
+  background-color: #795548 !important;
 }
 
 .accent-color {
-  background-color: #CDDC39 !important;
+  background-color: #FFC107 !important;
 }
 
 .primary-color-text {
-  color: #009688 !important;
+  color: #795548 !important;
 }
 
 .primary-color-dark-text {
-  color: #00796b !important;
+  color: #63443a !important;
 }
 
 .primary-color-light-text {
-  color: #4db6ac !important;
+  color: #795548 !important;
 }
 
 .accent-color-text {
-  color: #CDDC39 !important;
+  color: #FFC107 !important;
 }
