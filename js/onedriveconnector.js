@@ -1,4 +1,5 @@
 var onedrive_token
+var onedriveIsAuthenticated = false;
 
 Date.prototype.addHours= function(h){
   this.setHours(this.getHours()+h);
@@ -9,6 +10,7 @@ function initializeOneDrive() {
   if(window.location.hash.substr(1).split('=')[1] && window.location.hash.substr(1).indexOf('dropboxLogin') == -1 && window.location.hash.substr(1).indexOf('access_token') != -1) {
     onedrive_token = decodeURIComponent(window.location.hash.substr(1).split('=')[1].split('&')[0])
     history.pushState("", document.title, window.location.pathname + window.location.search);
+    onedriveIsAuthenticated = true;
     cloudStorageConnected("onedrive")
   }
 
@@ -27,6 +29,7 @@ function initializeOneDrive() {
   } else {
     if(window.localStorage.getItem("onedrive_token") &&  new Date(window.localStorage.getItem("expire")) > new Date()) {
       onedrive_token = window.localStorage.getItem("onedrive_token");
+      onedriveIsAuthenticated = true;
       cloudStorageConnected("onedrive")
     } else if(window.localStorage.getItem("onedrive_token")){
       window.localStorage.removeItem("onedrive_token")

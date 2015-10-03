@@ -211,7 +211,7 @@ function initDropZone() {
 		init: function() {
 			this.on("addedfile", function(file) {
 
-				if (dropboxIsAuthenticated && googledriveIsAuthenticated || dropboxIsAuthenticated && onedriveIsAuthenticated || googledriveIsAuthenticated && onedriveIsAuthenticated ||) {
+				if (dropboxIsAuthenticated && googledriveIsAuthenticated || dropboxIsAuthenticated && onedriveIsAuthenticated || googledriveIsAuthenticated && onedriveIsAuthenticated) {
 					handleFileSelect([file]);  
 				}
 
