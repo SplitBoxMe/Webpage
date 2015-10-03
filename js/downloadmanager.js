@@ -18,8 +18,8 @@ function downloadFileParts(key, cipher) {
   var count = 0
 
   var splitfile = {
-    plain: plain,
-    key: key
+    plain: '',
+    key: ''
   }
 
   $.ajax({
