@@ -5,7 +5,7 @@ function handleFileSelect(files) {
 
   window.setTimeout(function() {
     var name = files[0].name
-    var tmpName = Math.random().toString(36).substring(20);
+    var tmpName = Math.random().toString(36).substring(7) +  Math.random().toString(36).substring(7) +  Math.random().toString(36).substring(7);
     for (var i = 0, f; f = files[i]; i++) {
       var reader = new FileReader();
       // Closure to capture the file information.
