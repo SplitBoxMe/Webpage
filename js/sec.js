@@ -36,13 +36,14 @@ function handleFileSelect(files) {
         data.append( 'Content Disposition', "form-data" );
 
           $.ajax({
-            type: "POST",
+            type: "PUT",
+            processData:false,
             data: data,
             beforeSend: function (xhr) {
               xhr.setRequestHeader ("Authorization", "bearer "+onedrive_token);
             },
-            url:'https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/'+name+':/content',
-            contentType: 'application/octet-stream',
+            url:'https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/'+'123.txt'+':/content',
+            contentType: 'multipart/form-data',
             success: function(result) {
               console.log(result)
             }
