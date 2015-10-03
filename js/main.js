@@ -282,12 +282,3 @@ function removeClassName(element, className) {
 		element.className = element.className.replace(className, "");
 	}
 }
-
-function Base64EncodeUrl(str){
-  return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
-}
-
-function Base64DecodeUrl(str){
-  str = (str + '===').slice(0, str.length + (str.length % 4));
-  return str.replace(/-/g, '+').replace(/_/g, '/');
-}

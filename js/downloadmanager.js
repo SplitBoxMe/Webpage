@@ -6,9 +6,9 @@ function readFileParam() {
 }
 
 function encodeUrlFromBase64(urls) {
-  console.log(urls.split('|'))
-  var key = Base64DecodeUrl(urls.split('|')[0])
-  var cipher = Base64DecodeUrl(urls.split('|')[1])
+  console.log(urls.split(' '))
+  var key = decodeURIComponent(atob(urls.split(' ')[0]))
+  var cipher = decodeURIComponent(atob(urls.split(' ')[1]))
 
   console.log(key)
   console.log(cipher)
