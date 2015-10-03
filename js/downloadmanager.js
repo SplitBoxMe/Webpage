@@ -72,7 +72,7 @@ function downloadFileParts(key, cipher, name) {
   var progress2 = 0
   getFile(key, function(value) {
     progress1 = value/2
-    setDownloadStatus(null, progress1+progress2);
+    setDownloadStatus(null, Math.floor(progress1+progress2));
   }).then(function(result){
     console.log("Key download done")
     splitfile.key = result
