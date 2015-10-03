@@ -36,7 +36,7 @@ function downloadFileParts(key, cipher) {
 
   $.ajax({
     type: "GET",
-    url:cipher
+    url:cipher,
     success: function(result) {
       splitfile.cipher = result
       count++
