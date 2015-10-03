@@ -54,7 +54,7 @@ function uploadFileToOneDrive(name, file, callback) {
     success: function(result) {
       $.ajax({
         type: "GET",
-        url:'https://splitbox.me//onedriveproxy?auth=' + encodeURIComponent(onedrive_token) + '&url=' + encodeURIComponent('https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/' + name + ':/content'),
+        url:'https://splitbox.me/onedriveproxy?auth=' + encodeURIComponent(onedrive_token) + '&url=' + encodeURIComponent('https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/' + name + ':/content'),
         success: function(result) {
           callback(result)
         }
