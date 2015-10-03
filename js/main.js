@@ -8,6 +8,9 @@ initDropZone();
   	
 	window.dispatchEvent(new Event('resize'));
 
+  initializeOneDrive();
+  initializeDropbox();
+
   }); // end of document ready
 })(jQuery); // end of jQuery name space
 
