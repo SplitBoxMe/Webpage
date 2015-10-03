@@ -73,14 +73,14 @@ function downloadFileParts(key, cipher) {
     splitfile.key = result
     count++
     callback(result)
-  }
+  })
 
   getFile(cipher).then(function(result){
       console.log("Cipher download done")
       splitfile.cipher = result
       count++
       callback(result)
-  }
+  })
 
   function callback() {
     console.log(splitfile)
