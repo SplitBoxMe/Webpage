@@ -62,8 +62,7 @@ function uploadFile(filename, data){
                 headers: {
                     Authorization: 'Bearer ' + window.localStorage.getItem("googledriveToken")
                 },
-                success: function (data) {
-
+                success: function (dataSuccess) {
                     deferred.resolve(data.webContentLink)
                 }
             });
@@ -74,6 +73,7 @@ function uploadFile(filename, data){
 
 function addFile(filename, byteArray){
     var deferred = Q.defer()
+
     const boundary = '-------314159265358979323846';
     const delimiter = "\r\n--" + boundary + "\r\n";
     const close_delim = "\r\n--" + boundary + "--";
@@ -115,6 +115,7 @@ function addFile(filename, byteArray){
             deferred.resolve(file.id)
         });
     }
+
     return deferred.promise
 }
 
