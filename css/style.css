@@ -61,8 +61,17 @@ a:hover {
   width: 100%;
 }
 
+.btn-large:hover {
+  color: #FFC107;
+}
+
 .btn-large {
 	margin-bottom: 5px;	
+}
+
+.divider {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .collection .collection-item.avatar {
