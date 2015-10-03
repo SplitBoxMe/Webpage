@@ -38,8 +38,27 @@ function cloudStorageDisconnected(name) {
 }
 
 function encryptLink() {
-	var link = document.getElementById("downloadLink").value;
-	console.log("Encryping link: " + link);
+	var link = document.getElementById("downloadLink").value.replace("https://splitbox.me?", ""),
+		passphrase = generatePassphrase()
+
+	var encrypted = CryptoJS.AES.encrypt(link, passphrase);
+
+	document.getElementById("encryptLink").value = "https://splitbox.me?encrypt=" + encrypted
+	document.getElementById("decryptPass").value = passphrase
+}
+
+function decryptLink(linkEncrypted, passphrase){
+	return CryptoJS.AES.decrypt(linkEncrypted, passphrase)
+}
+
+function generatePassphrase(){
+	var text = "";
+	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+	for( var i=0; i < 8; i++ )
+		text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+	return text;
 }
 
 function shareFile() {

@@ -44,6 +44,12 @@ function readFileParam() {
   var fileParam = getUrlParam("file");
   if (fileParam != null) {
     encodeUrlFromBase64(fileParam);
+  }else{
+    fileParam = getUrlParam("encrypt")
+    if(fileParam != null){
+      var links = decryptLink(fileParam)
+      encodeUrlFromBase64(links)
+    }
   }
 }
 
@@ -72,7 +78,7 @@ function downloadFileParts(key, cipher, name) {
   var progress2 = 0
   getFile(key, function(value) {
     progress1 = value/2
-    setDownloadStatus(null, progress1+progress2);
+    setDownloadStatus(null, Math.floor((progress1+progress2)*100));
   }).then(function(result){
     console.log("Key download done")
     splitfile.key = result
@@ -82,7 +88,7 @@ function downloadFileParts(key, cipher, name) {
 
   getFile(cipher, function(value) {
     progress2 = value/2
-    setDownloadStatus(null, progress1+progress2);
+    setDownloadStatus(null, Math.floor((progress1+progress2)*100));
   }).then(function(result){
       console.log("Cipher download done")
       splitfile.cipher = result
@@ -95,6 +101,7 @@ function downloadFileParts(key, cipher, name) {
       return
     }
 
+    setDownloadStatus('Download finished, decrypting file...', null);
     decrypt(splitfile)
     saveByteArray([splitfile.plain], name);
     downloadFinished();
