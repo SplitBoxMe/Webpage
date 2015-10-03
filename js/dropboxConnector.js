@@ -40,6 +40,7 @@ function getFiles(){
     })
 }
 
+//Call this function with the publicly shared dropbox Link.
 function getFile(path){
     //client.readFile("/"+filename, function(err, content){
     //    console.log(content)
