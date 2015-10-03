@@ -53,7 +53,7 @@ function encryptLink() {
 function decryptLink(linkEncrypted, passphrase){
 	var encrypted = CryptoJS.AES.decrypt(linkEncrypted, passphrase)
 
-	return encrypted.toString(CryptoJS.enc.Utf8)
+	return encrypted.toString(CryptoJS.enc.Utf8).replace("file=", "")
 }
 
 function generatePassphrase(){
