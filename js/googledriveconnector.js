@@ -1,7 +1,7 @@
 // Your Client ID can be retrieved from your project in the Google
 // Developer Console, https://console.developers.google.com
 var CLIENT_ID = '51094403642-h70gvkengs2plg5tp5ah67jpn6ukhjq2.apps.googleusercontent.com',
-    googleDriveIsAuthenticated = false
+    googledriveIsAuthenticated = false
 
 var SCOPES = ['https://www.googleapis.com/auth/drive.appfolder', 'https://www.googleapis.com/auth/drive.file', "https://www.googleapis.com/auth/drive"];
 
@@ -59,7 +59,7 @@ function uploadFile(){
             var fileId = data.id
             //fileId = "0BxsBicby5sEYanlWYThKT19OM2c"
 
-            var request = gapi.drive.permissions.get({
+            var request = gapi.client.drive.permissions.get({
                 'fileId': fileId,
                 'permissionId': "type"
             });
