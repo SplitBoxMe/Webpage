@@ -46,13 +46,7 @@ function readFileParam() {
 	}else{
 		fileParam = getUrlParam("encrypt")
 		if(fileParam != null){
-			var key = window.prompt("Enter link decrypt key", "");
-			if (key.length > 0) {
-				var links = decryptLink(fileParam, key);
-				encodeUrlFromBase64(links);
-			} else {
-				Materialize.toast("Invalid key");
-			}
+			$('#modalKey').openModal();
 		}
 	}
 }

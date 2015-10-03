@@ -50,8 +50,20 @@ function encryptLink() {
 	removeClassName(smsForm, "hide");
 }
 
-function decryptLink(linkEncrypted, passphrase){
-	return CryptoJS.AES.decrypt(linkEncrypted, passphrase)
+function decryptLink(){
+	var fileParam = getUrlParam("encrypt");
+	var downloadKey = document.getElementById("downloadKey").value;
+	if (downloadKey.length > 0) {
+		var links = decryptLink(fileParam, downloadKey);
+		encodeUrlFromBase64(links);
+		$('#modalKey').closeModal();
+	} else {
+		Materialize.toast("Invalid key");
+	}
+}
+
+function decrypt(value, key){
+	return CryptoJS.AES.decrypt(value, key)
 }
 
 function generatePassphrase(){
@@ -84,7 +96,7 @@ function sharePassViaSMS() {
 	var message = "SplitBox key: " + decryptPass;
 	
 	sendSMS(number, message);
-	
+
 	var sendSMSButton = document.getElementById("sendSMS");
 	addClassName(sendSMSButton, "disabled");
 }

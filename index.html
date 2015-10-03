@@ -108,6 +108,24 @@
 					</div>
 				</div>
 
+				<div id="modalKey" class="modal">
+					<div class="modal-content">
+						<h4 id="uploadHeader">Decrypt Link</h4>
+						<p id="uploadDescription">The download links for this file have been encrypted. Please enter the decrypt key:</p>
+
+						<form class="col s12">
+							<div class="row">
+								<div class="input-field col s12">
+									<input id="downloadKey" type="text" value="">
+									<label class="active" for="downloadLink">Key</label>
+								</div>
+							</div>
+						</form>
+
+						<a id="decryptLink" href="javascript:decryptLink();" class="primary-color-dark waves-effect waves-light btn"><i class="material-icons left">file_download</i>Download</a>
+					</div>
+				</div>
+
 				<div id="modalShare" class="modal">
 					<div class="modal-content">
 						<h4 id="uploadHeader">Share your file</h4>
