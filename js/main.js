@@ -55,6 +55,9 @@ function uploadStarted(heading, indeterminate) {
 function uploadFinished() {
   $('#modalUpload').closeModal();
   clearInterval(animationHandle);
+
+  var shareButton = document.getElementById("shareButton");
+  removeClassName(shareButton, "disabled");
 }
 
 function indeterminateUploadUpdate() {
@@ -178,7 +181,9 @@ function initDropZone() {
 
       this.on("complete", function(file) {
         console.log("Dropzone complete");
-        //console.log(document.getElementById("imageDropzone").files.getAcceptedFiles());
+
+        var processButton = document.getElementById("processButton");
+        removeClassName(processButton, "disabled");
       });
       this.on("thumbnail", function(file, dataUrl) {
         console.log("Dropzone thumbnail");
