@@ -67,34 +67,21 @@
 
 				<div class="section">
 					<h5>Select your file</h5>
+					<p>If you selected your file and connected your cloud services, click here and we'll start to process your file. This will be done on your machine, your file will not be transferred to our servers. Encryption and uploading may takes a few seconds.</p>
 					<p id="compatibilityWarning" class="hide"><span class="red-text">Compatibility warning:</span> This app has been developed using new web technologies to increase performance and save server costs. Not all browsers support these technologies yet. Please switch to <a href="http://www.google.com/chrome/" target="_blnak">Chrome</a> if you are having issues.</p>
 					<form action="#" class="dropzone" id="imageDropzone"></form>
 				</div>
-				<div class="divider"></div>
 				
-				<div class="section">
+				<div class="section hide">
 					<h5>Encrypt, Split &amp; Upload</h5>
 					<p>If you selected your file and connected your cloud services, click here and we'll start to process your file. This will be done on your machine, your file will not be transferred to our servers. Encryption and uploading may takes a few seconds.</p>
 					<a id="processButton" href="javascript:processFile();" class="primary-color-dark waves-effect waves-light btn-large disabled"><i class="material-icons left">backup</i>Process File</a>
-
-					<div id="modalUpload" class="modal">
-						<div class="modal-content">
-							<h4 id="uploadHeader">Modal Header</h4>
-							<p id="uploadDescription">A bunch of text</p>
-							<div id="uploadAnimationContainer">
-								<div id="boxLeft">&nbsp;</div>
-								<div id="boxRight">&nbsp;</div>
-							</div>
-						</div>
-					</div>
-					
 				</div>
-				<div class="divider"></div>
 
-				<div class="section">
+				<div class="section hide">
 					<h5>Share</h5>
 					<p>You can now share a link to your file. Anyone with that link can download the encrypted parts of your file and restore the original file. However, you may want to add <a href="https://en.wikipedia.org/wiki/Two-factor_authentication" target="_blank">two-factor authentication</a> to make sure that you are in control of who gets access to your file.</p>
-					<a id="shareButton" class="primary-color-dark waves-effect waves-light btn-large disabled"><i class="material-icons left">share</i>Share</a>
+					<a id="shareButton" href="javascript:shareFile();" class="primary-color-dark waves-effect waves-light btn-large disabled"><i class="material-icons left">share</i>Share</a>
 				</div>
 
 				
@@ -106,6 +93,48 @@
 							<div id="boxDownloadLeft">&nbsp;</div>
 							<div id="boxDownloadRight">&nbsp;</div>
 						</div>
+					</div>
+				</div>
+
+				<div id="modalUpload" class="modal">
+					<div class="modal-content">
+						<h4 id="uploadHeader">Modal Header</h4>
+						<p id="uploadDescription">A bunch of text</p>
+						<div id="uploadAnimationContainer">
+							<div id="boxLeft">&nbsp;</div>
+							<div id="boxRight">&nbsp;</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="modalShare" class="modal">
+					<div class="modal-content">
+						<h4 id="uploadHeader">Share your file</h4>
+						<p id="uploadDescription">Your file has been securely uploaded to the cloud storeage providers you selected. You can now share the download link. You may want to add <a href="https://en.wikipedia.org/wiki/Two-factor_authentication" target="_blank">two-factor authentication</a> to make sure that you are in control of who gets access to your file.</p>
+						
+						<div class="row">
+							<form class="col s12">
+								<div class="row">
+									<div class="input-field col s12">
+										<input id="downloadLink" type="text" value="">
+										<label class="active" for="downloadLink">Download Link</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s6">
+										<input placeholder="Placeholder" id="first_name" type="text" class="validate">
+										<label for="first_name">Name</label>
+									</div>
+									<div class="input-field col s6">
+										<input id="last_name" type="text" class="validate">
+										<label for="last_name">Last Name</label>
+									</div>
+								</div>
+								
+							</form>
+						</div>
+
+
 					</div>
 				</div>
 
