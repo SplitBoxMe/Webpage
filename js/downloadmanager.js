@@ -30,6 +30,8 @@ function downloadFileParts(key, cipher) {
     splitfile.key = result
     count++
     callback(result)
+  }, function() {
+    console.log('error')
   });
 
   $.get(cipher, function(result) {
@@ -37,6 +39,8 @@ function downloadFileParts(key, cipher) {
     splitfile.cipher = result
     count++
     callback(result)
+  }, function() {
+    console.log('error')
   });
 
   function callback() {
