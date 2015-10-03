@@ -210,12 +210,9 @@ function initDropZone() {
 		uploadMultiple: false,
 		init: function() {
 			this.on("addedfile", function(file) {
-
 				if (dropboxIsAuthenticated && googledriveIsAuthenticated || dropboxIsAuthenticated && onedriveIsAuthenticated || googledriveIsAuthenticated && onedriveIsAuthenticated) {
 					handleFileSelect([file]);  
 				}
-
-				
 				checkCompatibility();
 			});
 
@@ -243,8 +240,12 @@ function initDropZone() {
 			}
 		},
 		accept: function(file, done) {
-			done();
-			//done("Upload blocked");
+			if (dropboxIsAuthenticated && googledriveIsAuthenticated || dropboxIsAuthenticated && onedriveIsAuthenticated || googledriveIsAuthenticated && onedriveIsAuthenticated) {
+				done();
+			} else {
+				Materialize.toast("Connect at least two cloud services", 4000);
+				done("Connect at least two cloud services");
+			}
 		}
 	};  
 }
