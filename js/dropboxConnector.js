@@ -40,11 +40,24 @@ function getFiles(){
     })
 }
 
-function getFile(filename){
-    client.readFile("/"+filename, function(err, content){
-        console.log(content)
-    })
+function getFile(path){
+    //client.readFile("/"+filename, function(err, content){
+    //    console.log(content)
+    //})
+    var deferred = Q.defer()
 
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', path, true);
+    xhr.responseType = 'arraybuffer';
+
+    xhr.onload = function(e) {
+        var uInt8Array = new Uint8Array(this.response);
+        // var byte3 = uInt8Array[4]; // byte at offset 4
+        deferred.resolve(uInt8Array)
+    };
+    xhr.send();
+
+    return deferred.promise
 }
 
 function writeFileToDropbox(filename, data){
@@ -75,9 +88,3 @@ function hashToDict(hash){
     }
     return dict
 }
-
-var file = "https://dl.dropboxusercontent.com/1/view/n94olabgn2ahg50/Apps/splitbox.me/directSharedLinkFile"
-
-$.get(file, function(data){
-    console.log(data)
-})

@@ -117,6 +117,23 @@ function animateUploadStatus(percentage) {
   rightBox.style.transform       = 'rotate('+deg+'deg)'; 
 }
 
+function downloadStarted(heading, indeterminate) {
+  $('#modalDownload').openModal();
+  if (indeterminate) {
+    // use indeterminate progress
+    setDownloadStatus(heading);
+    animationHandle = setInterval(indeterminateDownloadUpdate, animationInterval);
+  } else {
+    // progress reporting available
+    setDownloadStatus(heading, 0);
+  }
+}
+
+function downloadFinished() {
+  $('#modalDownload').closeModal();
+  clearInterval(animationHandle);
+}
+
 function setDownloadStatus(heading, percentage) {
   var uploadHeader = document.getElementById("downloadHeader");
   var uploadDescription = document.getElementById("downloadDescription");
