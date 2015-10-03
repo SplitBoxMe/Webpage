@@ -54,6 +54,20 @@ function uploadFile(){
         //dataType: 'json',
         success: function (data) {
             console.log(data);
+            var fileId = data.id
+            //type is the permission ID
+            $.ajax({
+                url: "https://www.googleapis.com/drive/v2/files/" + fileId +  "/permissions/type",
+                type: 'put',
+                data: "anyone",
+                headers: {
+                    Authorization: 'Bearer ' + window.localStorage.getItem("googledriveToken")
+                },
+                success: function (data) {
+                    console.log(data);
+                    //type is the permission ID
+                }
+            });
         }
     });
 }
