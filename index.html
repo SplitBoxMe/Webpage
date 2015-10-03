@@ -11,7 +11,7 @@
 		<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
 		<script src="https://www.dropbox.com/static/api/dropbox-datastores-1.2-latest.js" type="text/javascript"></script>
-		<script src="js/cloudstorageConnector.js" type="text/javascript"></script>
+		<script src="js/dropboxConnector.js" type="text/javascript"></script>
 	</head>
 	
 	<body>
@@ -66,6 +66,7 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ex nibh, tempor sed quam a, tincidunt molestie quam. Donec pharetra eleifend blandit. Cras gravida metus dignissim ex finibus, non sodales lacus iaculis. Maecenas vestibulum ultricies tellus, tincidunt mattis mauris auctor molestie.</p>
 					<a class="primary-color-dark waves-effect waves-light btn-large"><i class="material-icons left">backup</i>Upload File</a>
 				</div>
+
 				<div class="divider"></div>
 
 				<div class="section">
@@ -73,6 +74,16 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ex nibh, tempor sed quam a, tincidunt molestie quam. Donec pharetra eleifend blandit. Cras gravida metus dignissim ex finibus, non sodales lacus iaculis. Maecenas vestibulum ultricies tellus, tincidunt mattis mauris auctor molestie.</p>
 					<a class="primary-color-dark waves-effect waves-light btn-large"><i class="material-icons left">share</i>Share</a>
 				</div>
+				<div class="divider"></div>
+
+				<div class="section">
+					<h5>Debug</h5>
+					<button onclick="connectToDropbox()">Connect to dropbox</button>
+					<button onclick="getFile('hello.txt')">Get Files</button>
+					<button onclick="authorize()">authorize</button>
+					<a href="https://login.live.com/oauth20_authorize.srf?client_id=000000004816FB64&scope=onedrive.appfolder&response_type=code&redirect_uri=http://localhost:8000">SIGN IN WITH ONEDRIVE</a>
+				</div>
+				
 			</div>
 
 		</main>
