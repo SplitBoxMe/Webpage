@@ -47,6 +47,7 @@ function handleFileSelect(files) {
         })
 
         function showLink() {
+          console.log('called')
           if(uploads < 2) {
             return
           }
