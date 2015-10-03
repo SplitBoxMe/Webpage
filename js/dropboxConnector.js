@@ -12,10 +12,7 @@ function initializeDropbox() {
         initDropboxClient(window.localStorage.getItem("dropboxToken"))
     }
 
-    writeFileToDropbox("directSharedLinkFile", "some interesting other content bla bla bla :D:D:D:D:D")
-        .then(function(link){
-            console.log(link)
-        })
+
 }
 
 function initDropboxClient(token){
@@ -78,3 +75,9 @@ function hashToDict(hash){
     }
     return dict
 }
+
+var file = "https://dl.dropboxusercontent.com/1/view/n94olabgn2ahg50/Apps/splitbox.me/directSharedLinkFile"
+
+$.get(file, function(data){
+    console.log(data)
+})
