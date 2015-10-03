@@ -48,17 +48,8 @@ function handleAuthResult(authResult) {
 function uploadFile(filename, data){
     var deferred = Q.defer()
 
-    $.ajax({
-        url: 'https://www.googleapis.com/upload/drive/v2/files?uploadType=media',
-        type: 'post',
-        data: data,
-        headers: {
-            Authorization: 'Bearer ' + window.localStorage.getItem("googledriveToken")
-        },
-        success: function (data) {
-            console.log(data);
-            var fileId = data.id
-
+    addFile(filename, data)
+        .then(function(fileId){
             $.ajax({
                 url: "https://www.googleapis.com/drive/v2/files/" + fileId + "/permissions",
                 type: 'post',
@@ -76,14 +67,13 @@ function uploadFile(filename, data){
                     deferred.resolve(data.webContentLink)
                 }
             });
-
-        }
-    });
+        })
 
     return deferred.promise
 }
 
 function addFile(filename, byteArray){
+    var deferred = Q.defer()
     const boundary = '-------314159265358979323846';
     const delimiter = "\r\n--" + boundary + "\r\n";
     const close_delim = "\r\n--" + boundary + "--";
@@ -122,11 +112,12 @@ function addFile(filename, byteArray){
             'body': multipartRequestBody});
 
         request.execute(function(file){
-            console.log(file)
+            deferred.resolve(file.id)
         });
     }
+    return deferred.promise
 }
 
 function testUpload(){
-    addFile("Testfile123",  new Uint8Array(100))
+    uploadFile("Testfile123",  new Uint8Array(100))
 }
