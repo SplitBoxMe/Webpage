@@ -17,7 +17,6 @@ function authorizeWithGoogleDrive() {
             window.localStorage.setItem("googledriveToken", authResult.access_token)
             cloudStorageConnected("googledrive");
             googleDriveIsAuthenticated = true
-            console.log(authResult);
         });
 }
 
@@ -40,7 +39,6 @@ function handleAuthResult(authResult) {
         // Access token has been successfully retrieved, requests can be sent to the API
         cloudStorageConnected("googledrive")
         googleDriveIsAuthenticated = true
-        uploadFile()
     }
 }
 
