@@ -1,5 +1,16 @@
 var onedrive_token
 
+Date.prototype.addHours= function(h){
+  this.setHours(this.getHours()+h);
+  return this;
+}
+
+if(window.localStorage.getItem("location_restore")) {
+  var l = window.localStorage.getItem("location_restore")
+  window.localStorage.setItem("location_restore", undefined)
+  location = l
+}
+
 function initializeOneDrive() {
   if(window.location.hash.substr(1).split('=')[1] && window.location.hash.substr(1).indexOf('dropboxLogin') == -1) {
     onedrive_token = decodeURIComponent(window.location.hash.substr(1).split('=')[1].split('&')[0])
@@ -9,8 +20,15 @@ function initializeOneDrive() {
 
   if(onedrive_token) {
     window.localStorage.setItem("onedrive_token", onedrive_token);
+    window.localStorage.setItem("expire", new Date().addHours(1));
   } else {
-    onedrive_token = window.localStorage.getItem("onedrive_token");
+    if(window.localStorage.getItem("onedrive_token") &&  window.localStorage.getItem("expire") > new Date()) {
+      onedrive_token = window.localStorage.getItem("onedrive_token");
+    } else if(window.localStorage.getItem("onedrive_token")){
+      window.localStorage.setItem("onedrive_token", undefined)
+      window.localStorage.setItem("location_restore", location.href)
+      window.open("https://login.live.com/oauth20_authorize.srf?client_id=000000004816FB64&scope=onedrive.readwrite&response_type=token&redirect_uri=https://splitbox.me")
+    }
   }
   console.log("[DEBUG] OneDrive Token: " + onedrive_token)
 }
