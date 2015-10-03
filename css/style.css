@@ -19,11 +19,11 @@ p {
 }
 
 a {
-  color: #CDDC39;
+  color: #546E7A;
 }
 
 a:hover {
-  color: #CDDC39;
+  color: #546E7A;
 }
 
 #setupCanvasWrapper {
@@ -205,33 +205,33 @@ footer.page-footer {
 * Corporate design colors
 **/
 .primary-color {
-  background-color: #009688 !important;
+  background-color: #607D8B !important;
 }
 
 .primary-color-dark {
-  background-color: #00796b !important;
+  background-color: #546E7A !important;
 }
 
 .primary-color-light {
-  background-color: #4db6ac !important;
+  background-color: #78909C !important;
 }
 
 .accent-color {
-  background-color: #CDDC39 !important;
+  background-color: #BF360C !important;
 }
 
 .primary-color-text {
-  color: #009688 !important;
+  color: #607D8B !important;
 }
 
 .primary-color-dark-text {
-  color: #00796b !important;
+  color: #546E7A !important;
 }
 
 .primary-color-light-text {
-  color: #4db6ac !important;
+  color: #78909C !important;
 }
 
 .accent-color-text {
-  color: #CDDC39 !important;
+  color: #BF360C !important;
 }
