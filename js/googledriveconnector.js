@@ -2,7 +2,7 @@
 // Developer Console, https://console.developers.google.com
 var CLIENT_ID = '51094403642-h70gvkengs2plg5tp5ah67jpn6ukhjq2.apps.googleusercontent.com';
 
-var SCOPES = ['https://www.googleapis.com/auth/drive.appfolder', 'https://www.googleapis.com/auth/drive.file'];
+var SCOPES = ['https://www.googleapis.com/auth/drive.appfolder', 'https://www.googleapis.com/auth/drive.file', "https://www.googleapis.com/auth/drive"];
 
 function initializeGoogleDrive() {
     checkAuth();
