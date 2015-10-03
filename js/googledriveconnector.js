@@ -120,4 +120,7 @@ function addFile(filename, byteArray){
 
 function testUpload(){
     uploadFile("Testfile123",  new Uint8Array(100))
+        .then(function(link){
+            console.log("Download file here: ", link)
+        })
 }
