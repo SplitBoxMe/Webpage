@@ -85,7 +85,10 @@ function sharePassViaSMS() {
 	var decryptPass = document.getElementById("decryptPass").value;
 	var message = "SplitBox key: " + decryptPass;
 	
-	sendSMS(number, message)
+	sendSMS(number, message);
+	
+	var sendSMSButton = document.getElementById("sendSMS");
+	addClassName(sendSMSButton, "disabled");
 }
 
 function processFile() {
@@ -327,5 +330,17 @@ function addClassName(element, className) {
 function removeClassName(element, className) {
 	if (element.className.indexOf(className) > -1) {
 		element.className = element.className.replace(className, "");
+	}
+}
+
+function copyToClipboard(input) {
+	try {
+		input.select();
+		var successful = document.execCommand('copy');
+		if (successful) {
+			Materialize.toast("Copied to clipboard");	
+		}
+	} catch (err) {
+		console.log('Oops, unable to copy');
 	}
 }
