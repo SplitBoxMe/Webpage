@@ -110,30 +110,18 @@
 				<div id="modalShare" class="modal">
 					<div class="modal-content">
 						<h4 id="uploadHeader">Share your file</h4>
-						<p id="uploadDescription">Your file has been securely uploaded to the cloud storeage providers you selected. You can now share the download link. You may want to add <a href="https://en.wikipedia.org/wiki/Two-factor_authentication" target="_blank">two-factor authentication</a> to make sure that you are in control of who gets access to your file.</p>
+						<p id="uploadDescription">Your file has been securely uploaded to the cloud storage providers you selected. You can now share the download link. You may want to add <a href="https://en.wikipedia.org/wiki/Two-factor_authentication" target="_blank">two-factor authentication</a> to make sure that you are in control of who gets access to your file.</p>
 						
-						<div class="row">
-							<form class="col s12">
-								<div class="row">
-									<div class="input-field col s12">
-										<input id="downloadLink" type="text" value="">
-										<label class="active" for="downloadLink">Download Link</label>
-									</div>
+						<form class="col s12">
+							<div class="row">
+								<div class="input-field col s12">
+									<input id="downloadLink" type="text" value="">
+									<label class="active" for="downloadLink">Download Link</label>
 								</div>
-								<div class="row">
-									<div class="input-field col s6">
-										<input placeholder="Placeholder" id="first_name" type="text" class="validate">
-										<label for="first_name">Name</label>
-									</div>
-									<div class="input-field col s6">
-										<input id="last_name" type="text" class="validate">
-										<label for="last_name">Last Name</label>
-									</div>
-								</div>
-								
-							</form>
-						</div>
+							</div>
+						</form>
 
+						<a id="encryptLink" href="javascript:encryptLink();" class="primary-color-dark waves-effect waves-light btn"><i class="material-icons left">lock</i>Encrypt Link</a>
 
 					</div>
 				</div>

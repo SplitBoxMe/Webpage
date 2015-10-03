@@ -37,6 +37,11 @@ function cloudStorageDisconnected(name) {
 	}
 }
 
+function encryptLink() {
+	var link = document.getElementById("encryptLink").value;
+	console.log("Encryping link: " + link);
+}
+
 function shareFile() {
 	$('#modalShare').openModal();
 }

@@ -43,7 +43,7 @@ function handleAuthResult(authResult) {
 }
 
 //data has to be of type UInt8Array
-function uploadFile(filename, data){
+function uploadFileToGoogleDrive(filename, data){
     var deferred = Q.defer()
 
     addFile(filename, data)
