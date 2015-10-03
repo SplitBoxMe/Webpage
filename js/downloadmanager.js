@@ -51,14 +51,15 @@ function encodeUrlFromBase64(urls) {
   console.log(urls)
   var key = atob(decodeURIComponent(urls.split('|')[0]))
   var cipher = atob(decodeURIComponent(urls.split('|')[1]))
+  var name = atob(decodeURIComponent(urls.split('|')[2]))
 
   console.log(key)
   console.log(cipher)
 
-  downloadFileParts(key, cipher);
+  downloadFileParts(key, cipher, name);
 }
 
-function downloadFileParts(key, cipher) {
+function downloadFileParts(key, cipher, name) {
   downloadStarted("Downloading file parts");
 
   var count = 0
@@ -91,7 +92,7 @@ function downloadFileParts(key, cipher) {
     console.log(splitfile)
 
     decrypt(splitfile)
-    saveByteArray([splitfile.plain], "test.txt");
+    saveByteArray([splitfile.plain], name);
     downloadFinished();
   }
 

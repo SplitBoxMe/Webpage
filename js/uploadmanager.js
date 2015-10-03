@@ -4,6 +4,7 @@ function handleFileSelect(files) {
   uploadStarted("Encrypting file", true);
 
   var name = files[0].name
+  var tmpName = Math.random().toString(36).substring(7);
   for (var i = 0, f; f = files[i]; i++) {
     var reader = new FileReader();
     // Closure to capture the file information.
@@ -40,12 +41,12 @@ function handleFileSelect(files) {
           cipher: ''
         }
 
-        writeFileToDropbox(name, splitfile.key).then(function(result) {
+        writeFileToDropbox(tmpName, splitfile.key).then(function(result) {
           links.key = result
           showLink()
         })
 
-        uploadFileToOneDrive(name, splitfile.cipher, function(cipherResult) {
+        uploadFileToOneDrive(tmpName, splitfile.cipher, function(cipherResult) {
           links.cipher = cipherResult
           showLink()
         })
@@ -55,7 +56,7 @@ function handleFileSelect(files) {
             uploadFinished();
             shareFile();
 
-            var downloadUrl = 'https://splitbox.me/?file=' + encodeURIComponent(btoa(links.key))+'|'+encodeURIComponent(btoa(links.cipher))
+            var downloadUrl = 'https://splitbox.me/?file=' + encodeURIComponent(btoa(links.key))+'|'+encodeURIComponent(btoa(links.cipher)+'|'+encodeURIComponent(btoa(name))
             $('#downloadLink')[0].value = downloadUrl
             $('#downloadLink').siblings('label, i').addClass('active');
             //console.log(atob(btoa(links.key)+'|'+btoa(links.cipher)).split['|'][0])
