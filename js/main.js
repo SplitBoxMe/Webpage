@@ -43,7 +43,7 @@ function encryptLink() {
 
 	var encrypted = CryptoJS.AES.encrypt(link, passphrase);
 
-	document.getElementById("encryptLink").value = "https://splitbox.me?encrypt=" + encrypted
+	document.getElementById("downloadLink").value = "https://splitbox.me?encrypt=" + encrypted
 	document.getElementById("decryptPass").value = passphrase
 }
 
