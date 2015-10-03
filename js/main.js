@@ -160,7 +160,7 @@ function setDownloadStatus(heading, percentage) {
   uploadDescription.innerHTML = "We'll download, merge and decrypt your file now. ";
   if (percentage != null) {
     uploadDescription.innerHTML += percentage + "% done.";
-    animateDonwloadStatus(percentage);
+    animateDownloadStatus(percentage);
   }
 }
 
