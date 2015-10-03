@@ -10,6 +10,7 @@ function initDropboxClient(token){
             return false
         }else{
             dropboxIsAuthenticated = true
+            cloudStorageConnected("dropbox")
             return true
         }
     });
