@@ -83,10 +83,13 @@ function uploadFile(filename, data){
     return deferred.promise
 }
 
-function addFile(filename, fileData){
+function addFile(filename, byteArray){
     const boundary = '-------314159265358979323846';
     const delimiter = "\r\n--" + boundary + "\r\n";
     const close_delim = "\r\n--" + boundary + "--";
+
+    //Convert byteArray to blob
+    var fileData = new Blob([byteArray], {type: 'application/octet-stream'});
 
     var reader = new FileReader();
     reader.readAsBinaryString(fileData);
@@ -127,5 +130,5 @@ function addFile(filename, fileData){
 }
 
 function testUpload(){
-    addFile("Testfile123", "dataasldkfjgaöihegjaskdlfasd")
+    addFile("Testfile123",  new Uint8Array(100))
 }
