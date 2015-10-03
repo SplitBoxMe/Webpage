@@ -15,4 +15,27 @@ function initializeOneDrive() {
   console.log("[DEBUG] OneDrive Token: " + onedrive_token)
 }
 
+function uploadFileToOneDrive(name, file, callback) {
+  data = new FormData();
+  data.append( file )
 
+  $.ajax({
+    type: "PUT",
+    processData:false,
+    data: data,
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader ("Authorization", "bearer "+onedrive_token);
+    },
+    url:'https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/'+name+':/content',
+    contentType: 'multipart/form-data',
+    success: function(result) {
+      $.ajax({
+        type: "GET",
+        url:'http://proxysplitbox.cloudapp.net:8080/?auth=' + encodeURIComponent(onedrive_token) + '&url=' + encodeURIComponent('https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/' + name + ':/content'),
+        success: function(result) {
+          callback(result)
+        }
+      });
+    }
+  });
+}
