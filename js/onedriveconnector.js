@@ -30,7 +30,7 @@ function initializeOneDrive() {
       window.localStorage.setItem("onedrive_token", undefined)
       window.localStorage.setItem("location_restore", location.href)
       console.log(location.href)
-      location = "https://login.live.com/oauth20_authorize.srf?client_id=000000004816FB64&scope=onedrive.readwrite&response_type=token&redirect_uri=https://splitbox.me","
+      location = "https://login.live.com/oauth20_authorize.srf?client_id=000000004816FB64&scope=onedrive.readwrite&response_type=token&redirect_uri=https://splitbox.me"
     }
   }
   console.log("[DEBUG] OneDrive Token: " + onedrive_token)
