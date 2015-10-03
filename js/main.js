@@ -38,13 +38,16 @@ function cloudStorageDisconnected(name) {
 }
 
 function encryptLink() {
-	var link = document.getElementById("downloadLink").value.replace("https://splitbox.me?", ""),
+	var link = document.getElementById("downloadLink").value.replace("https://splitbox.me/?", ""),
 		passphrase = generatePassphrase()
 
 	var encrypted = CryptoJS.AES.encrypt(link, passphrase);
 
-	document.getElementById("encryptLink").value = "https://splitbox.me?encrypt=" + encrypted
-	document.getElementById("decryptPass").value = passphrase
+	document.getElementById("encryptLink").value = "https://splitbox.me/?encrypt=" + encrypted;
+	document.getElementById("decryptPass").value = passphrase;
+
+	var smsForm = document.getElementById("sendSMSForm");
+	removeClassName(smsForm, "hide");
 }
 
 function decryptLink(linkEncrypted, passphrase){
@@ -73,6 +76,14 @@ function shareLinkViaMail() {
 	message += "<br/><br/>Download: " + link;
 
 	sendMail(mail, subject, message);
+}
+
+function sharePassViaSMS() {
+	var number = document.getElementById("phoneNumber").value;
+	var decryptPass = document.getElementById("decryptPass").value;
+	var message = "SplitBox key: " + decryptPass;
+	
+	sendSMS(number, message)
 }
 
 function processFile() {
