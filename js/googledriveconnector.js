@@ -58,20 +58,17 @@ function uploadFile(){
             console.log(data);
             var fileId = data.id
             //fileId = "0BxsBicby5sEYanlWYThKT19OM2c"
+            console.log("fileId: " + fileId)
+            console.log("DownloadUrl " + data.downloadUrl)
 
-            var request = gapi.client.drive.permissions.get({
-                'fileId': fileId,
-                'permissionId': "type"
-            });
-            request.execute(function(resp) {
-                resp.role = "anyone";
-                var updateRequest = gapi.client.drive.permissions.update({
-                    'fileId': fileId,
-                    'permissionId': "type",
-                    'resource': resp
-                });
-                updateRequest.execute(function(resp) { });
-            });
+            $.post("https://www.googleapis.com/drive/v2/files/" + fileId + "/permissions", {
+                role: "reader",
+                type: "anyone",
+                withLink: "true"
+            }, function(data){
+                console.log("Inserted", data)
+            })
+
         }
     });
 }
