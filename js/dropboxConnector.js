@@ -45,3 +45,4 @@ function onDropboxRedirect(token){
     localStorage.dropboxToken =  token
 }
 
+console.log(window.location.hash)
