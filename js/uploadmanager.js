@@ -28,38 +28,16 @@ function handleFileSelect(files) {
         }());
 
         encrypt(splitfile)
+        writeFileToDropbox(name, splitfile.key).then(function(result) {
+          console.log(result)
+        })
 
-        data = new FormData();
-        data.append( 'file attachment', new Blob(splitfile.plain, {type: "octet/stream"}) );
-        data.append( 'Text', "SplitBox.me" );
-        data.append( 'Attachment Format', "MIME");
-        data.append( 'Content Disposition', "form-data" );
-
-          $.ajax({
-            type: "PUT",
-            processData:false,
-            data: data,
-            beforeSend: function (xhr) {
-              xhr.setRequestHeader ("Authorization", "bearer "+onedrive_token);
-            },
-            url:'https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/'+name+':/content',
-            contentType: 'multipart/form-data',
-            success: function(result) {
-              $.ajax({
-                type: "GET",
-                beforeSend: function (xhr) {
-                  xhr.setRequestHeader ("Authorization", "bearer "+onedrive_token);
-                },
-                url:'https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/'+name+':/content',
-                success: function(result) {
-                  console.log(result)
-                }
-              });
-            }
-          });
-        saveByteArray([splitfile.cipher], name);
-        decrypt(splitfile)
-        saveByteArray([splitfile.plain], name);
+        uploadFileToOneDrive(name, splitfile.cipher, function(cipherResult) {
+          console.log(cipherResult)
+        })
+        //saveByteArray([splitfile.cipher], name);
+        //decrypt(splitfile)
+        //saveByteArray([splitfile.plain], name);
       };
     })(f);
     // Read in the image file as a data URL.
