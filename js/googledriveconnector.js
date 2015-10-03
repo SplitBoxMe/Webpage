@@ -61,13 +61,22 @@ function uploadFile(){
             console.log("fileId: " + fileId)
             console.log("DownloadUrl " + data.downloadUrl)
 
-            $.post("https://www.googleapis.com/drive/v2/files/" + fileId + "/permissions", {
-                role: "reader",
-                type: "anyone",
-                withLink: "true"
-            }, function(data){
-                console.log("Inserted", data)
-            })
+            $.ajax({
+                url: "https://www.googleapis.com/drive/v2/files/" + fileId + "/permissions",
+                type: 'post',
+                data: {
+                    role: "reader",
+                    type: "anyone",
+                    withLink: "true"
+                },
+                headers: {
+                    Authorization: 'Bearer ' + window.localStorage.getItem("googledriveToken")
+                },
+                dataType: 'json',
+                success: function (data) {
+                    console.log("inserted ", data)
+                }
+            });a
 
         }
     });
