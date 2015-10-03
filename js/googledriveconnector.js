@@ -34,14 +34,14 @@ function checkAuth() {
  */
 function handleAuthResult(authResult) {
     console.log("Google Result", authResult)
-    if (authResult) {
-        // Access token has been successfully retrieved, requests can be sent to the API
-        cloudStorageConnected("googledrive")
-    } else {
+    if (authResult.error_subtype && authResult.error_subtype == "access_denied") {
         // No access token could be retrieved, force the authorization flow.
         console.log("has no access")
         gapi.auth.authorize(
             {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': false},
             handleAuthResult);
+    } else {
+        // Access token has been successfully retrieved, requests can be sent to the API
+        cloudStorageConnected("googledrive")
     }
 }
