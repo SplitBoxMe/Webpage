@@ -63,7 +63,7 @@ function handleFileSelect(files) {
 						shareFile();
 
 						console.log('https://splitbox.me/?file=' + btoa(links.key)+'|'+btoa(links.cipher))
-            $('#downloadLink').innerText = downloadUrl
+            $('#downloadLink').text(downloadUrl)
 						//console.log(atob(btoa(links.key)+'|'+btoa(links.cipher)).split['|'][0])  
 					}
 				}
