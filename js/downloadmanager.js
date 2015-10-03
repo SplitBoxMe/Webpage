@@ -10,7 +10,6 @@ function encodeUrlFromBase64(base64) {
 
   // base64 -> urls
 
-
   downloadFileParts(urls);
 }
 
