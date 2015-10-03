@@ -48,7 +48,7 @@ function handleFileSelect(files) {
       				showLink()
       			})
 
-      			writeFileToDropbox(tmpName, splitfile.cipher, function(cipherResult) {
+      			writeFileToDropbox(tmpName, splitfile.cipher).then(function(cipherResult) {
       				links.cipher = cipherResult
       				showLink()
       			})
