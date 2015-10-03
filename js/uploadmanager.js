@@ -51,7 +51,8 @@ function handleFileSelect(files) {
           if(uploads < 2) {
             return
           }
-          console.log('https://splitbox.me/?file=' + btoa(links.key)+'|'+btoa(links.cipher))
+          var downloadUrl = ('https://splitbox.me/?file=' + btoa(links.key)+'|'+btoa(links.cipher))
+          $('#downloadLink').innerText = downloadUrl
           //console.log(atob(btoa(links.key)+'|'+btoa(links.cipher)).split['|'][0])
 
         }
