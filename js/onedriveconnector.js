@@ -16,13 +16,11 @@ function initializeOneDrive() {
 }
 
 function uploadFileToOneDrive(name, file, callback) {
-  data = new FormData();
-  data.append( file )
 
   $.ajax({
     type: "PUT",
     processData:false,
-    data: data,
+    data: file,
     beforeSend: function (xhr) {
       xhr.setRequestHeader ("Authorization", "bearer "+onedrive_token);
     },
