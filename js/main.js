@@ -38,13 +38,16 @@ function cloudStorageDisconnected(name) {
 }
 
 function encryptLink() {
-	var link = document.getElementById("downloadLink").value.replace("https://splitbox.me?", ""),
+	var link = document.getElementById("downloadLink").value.replace("https://splitbox.me/?", ""),
 		passphrase = generatePassphrase()
 
 	var encrypted = CryptoJS.AES.encrypt(link, passphrase);
 
 	document.getElementById("downloadLink").value = "https://splitbox.me?encrypt=" + encrypted
 	document.getElementById("decryptPass").value = passphrase
+
+	var smsForm = document.getElementById("sendSMSForm");
+	removeClassName(smsForm, "hide");
 }
 
 function decryptLink(linkEncrypted, passphrase){
@@ -69,10 +72,18 @@ function shareLinkViaMail() {
 	var mail = document.getElementById("mailAddress").value;
 	var link = document.getElementById("downloadLink").value;
 	var subject = "File shared via SplitBox";
-	var message = "Hey,\nsomeone wants to share a file with you:<br><br>" + document.getElementById("mailMessage").innerHTML;
-	message += "<br><br>Download: " + "<a href=\"" + link + "\">" + link + "</a>";
+	var message = "Hey,<br/>someone wants to share a file with you:<br/><br/>" + document.getElementById("mailMessage").innerHTML;
+	message += "<br/><br/>Download: " + link;
 
 	sendMail(mail, subject, message);
+}
+
+function sharePassViaSMS() {
+	var number = document.getElementById("phoneNumber").value;
+	var decryptPass = document.getElementById("decryptPass").value;
+	var message = "SplitBox key: " + decryptPass;
+	
+	sendSMS(number, message)
 }
 
 function processFile() {
