@@ -61,7 +61,7 @@ a:hover {
   width: 100%;
 }
 
-.btn-large:hover {
+.btn-large:hover, .btn:hover {
   color: #FFF;
 }
 
