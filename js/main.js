@@ -65,6 +65,16 @@ function shareFile() {
 	$('#modalShare').openModal();
 }
 
+function shareLinkViaMail() {
+	var mail = document.getElementById("mailAddress").value;
+	var link = document.getElementById("downloadLink").value;
+	var subject = "File shared via SplitBox";
+	var message = "Hey,\nsomeone wants to share a file with you:<br><br>" + document.getElementById("mailMessage").innerHTML;
+	message += "<br><br>Download: " + "<a href=\"" + link + "\">" + link + "</a>";
+
+	sendMail(mail, subject, message);
+}
+
 function processFile() {
 	$('#modalUpload').openModal();
 	setUploadStatus("Preparing file", 0);

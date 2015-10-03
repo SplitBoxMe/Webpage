@@ -8,6 +8,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  font-family: 'Titillium Web', Titillium
 }
 
 main {
@@ -65,7 +66,7 @@ a:hover {
   color: #FFF;
 }
 
-.btn-large {
+.btn-large, .btn {
 	margin-bottom: 5px;	
 }
 

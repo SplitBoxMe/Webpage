@@ -13,6 +13,7 @@
 		<meta property="og:image" content="images/logo.png" />
 
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href='https://fonts.googleapis.com/css?family=Titillium+Web:400' rel='stylesheet' type='text/css'>
 		<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
 		<link href="css/dropzone.css" type="text/css" rel="stylesheet" media="screen,projection" />
 		<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
@@ -110,18 +111,28 @@
 				<div id="modalShare" class="modal">
 					<div class="modal-content">
 						<h4 id="uploadHeader">Share your file</h4>
-						<p id="uploadDescription">Your file has been securely uploaded to the cloud storage providers you selected. You can now share the download link. You may want to add <a href="https://en.wikipedia.org/wiki/Two-factor_authentication" target="_blank">two-factor authentication</a> to make sure that you are in control of who gets access to your file.</p>
+						<p id="uploadDescription">Your file has been securely uploaded to the cloud storage providers you selected. You can now share the download link. You may want to encrypt the link and add <a href="https://en.wikipedia.org/wiki/Two-factor_authentication" target="_blank">two-factor authentication</a> to make sure that you are in control of who gets access to your file.</p>
 						
+						<a id="encryptLink" href="javascript:encryptLink();" class="primary-color-dark waves-effect waves-light btn"><i class="material-icons left">lock</i>Encrypt Link</a>
+						<br/><br/>
 						<form class="col s12">
 							<div class="row">
 								<div class="input-field col s12">
 									<input id="downloadLink" type="text" value="">
 									<label class="active" for="downloadLink">Download Link</label>
 								</div>
+								<div class="input-field col s12">
+									<input id="mailAddress" type="email" value="">
+									<label class="active" for="mailAddress">E-Mail Address</label>
+								</div>
+								<div class="input-field col s12">
+									<textarea id="mailMessage" class="materialize-textarea"></textarea>
+									<label class="active" for="mailMessage">Message</label>
+								</div>
 							</div>
 						</form>
 
-						<a id="encryptLink" href="javascript:encryptLink();" class="primary-color-dark waves-effect waves-light btn"><i class="material-icons left">lock</i>Encrypt Link</a>
+						<a id="sendMail" href="javascript:shareLinkViaMail();" class="primary-color-dark waves-effect waves-light btn"><i class="material-icons left">mail</i>Send Mail</a>
 
 					</div>
 				</div>
