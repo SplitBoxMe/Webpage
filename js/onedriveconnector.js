@@ -4,7 +4,7 @@ function initializeOneDrive() {
   if(window.location.hash.substr(1).split('=')[1] && window.location.hash.substr(1).indexOf('dropboxLogin') == -1) {
     onedrive_token = decodeURIComponent(window.location.hash.substr(1).split('=')[1].split('&')[0])
     history.pushState("", document.title, window.location.pathname + window.location.search);
-    document.getElementById('onedriveButton').innerHTML += " ✓";
+    cloudStorageConnected("onedrive")
   }
 
   if(onedrive_token) {
