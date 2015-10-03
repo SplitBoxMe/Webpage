@@ -52,7 +52,7 @@ function handleFileSelect(files) {
             return
           }
           console.log('https://splitbox.me/?file=' + btoa(links.key)+'|'+btoa(links.cipher))
-          console.log(atob(btoa(links.key)+'|'+btoa(links.cipher)).split['|'][0])
+          //console.log(atob(btoa(links.key)+'|'+btoa(links.cipher)).split['|'][0])
 
         }
         //saveByteArray([splitfile.cipher], name);

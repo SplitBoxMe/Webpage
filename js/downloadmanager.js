@@ -5,9 +5,7 @@ function readFileParam() {
   }
 }
 
-function encodeUrlFromBase64(base64) {
-  var urls;
-
+function encodeUrlFromBase64(urls) {
   var key = atob(urls.split('|')[0])
   var cipher = atob(urls.split('|')[1])
 
