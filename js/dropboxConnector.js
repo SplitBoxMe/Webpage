@@ -20,7 +20,8 @@ function getCurrentToken(){
 }
 
 function authorize(){
-    window.location.replace( "https://www.dropbox.com/1/oauth2/authorize?client_id=" + dropboxAppKey + "&response_type=code")
+    var redirect = "https://splitbox.me"
+    window.location.replace( "https://www.dropbox.com/1/oauth2/authorize?client_id=" + dropboxAppKey + "&response_type=token&redirect_uri=" + redirect + "&state=dropboxLogin" )
 }
 
 function getFiles(){
@@ -39,3 +40,8 @@ function writeFile(filename, data){
     client.readFile("/"+filename, data, function(err, content){
     })
 }
+
+function onDropboxRedirect(token){
+    localStorage.dropboxToken =  token
+}
+
