@@ -109,9 +109,9 @@ function decrypt(splitfile){
   splitfile.plain =  new Uint8Array(splitfile.cipher.length)
   for (var cycle = 0 ; cycle < splitfile.cipher.length ; cycle++) {
     if(splitfile.cipher[cycle] < splitfile.key[cycle]){
-      splitfile.plain[cycle] = splitfile.cipher[cycle] + 255 - splitfile.key[cycle]
+      splitfile.plain[cycle] = splitfile.cipher[cycle] + 256 - splitfile.key[cycle]
     } else {
-      splitfile.plain[cycle] = splitfile.cipher[cycle] - splitfile.key[cycle]
+      splitfile.plain[cycle] = splitfile.cipher[cycle] - splitfile.key[cycle] + 1
     }
   }
 }
