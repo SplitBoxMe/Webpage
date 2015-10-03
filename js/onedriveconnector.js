@@ -27,6 +27,7 @@ function initializeOneDrive() {
   } else {
     if(window.localStorage.getItem("onedrive_token") &&  new Date(window.localStorage.getItem("expire")) > new Date()) {
       onedrive_token = window.localStorage.getItem("onedrive_token");
+      cloudStorageConnected("onedrive")
     } else if(window.localStorage.getItem("onedrive_token")){
       window.localStorage.removeItem("onedrive_token")
       window.localStorage.setItem("location_restore", location.href)
