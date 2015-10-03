@@ -55,18 +55,20 @@ function uploadFile(){
         success: function (data) {
             console.log(data);
             var fileId = data.id
-            //type is the permission ID
-            $.ajax({
-                url: "https://www.googleapis.com/drive/v2/files/" + fileId +  "/permissions/type",
-                type: 'put',
-                data: "anyone",
-                headers: {
-                    Authorization: 'Bearer ' + window.localStorage.getItem("googledriveToken")
-                },
-                success: function (data) {
-                    console.log(data);
-                    //type is the permission ID
-                }
+            //fileId = "0BxsBicby5sEYanlWYThKT19OM2c"
+
+            var request = gapi.client.drive.permissions.get({
+                'fileId': fileId,
+                'permissionId': permissionId
+            });
+            request.execute(function(resp) {
+                resp.role = "anyone";
+                var updateRequest = gapi.client.drive.permissions.update({
+                    'fileId': fileId,
+                    'permissionId': permissionId,
+                    'resource': resp
+                });
+                updateRequest.execute(function(resp) { });
             });
         }
     });
