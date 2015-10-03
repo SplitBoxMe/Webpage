@@ -7,8 +7,8 @@ var SCOPES = ['https://www.googleapis.com/auth/drive.appfolder'];
 /**
  * Called when the client library is loaded.
  */
-function handleClientLoad() {
-    //checkAuth();
+function initGoogleConnector() {
+    checkAuth();
 }
 
 function authorizeWithGoogleDrive() {
@@ -35,7 +35,7 @@ function handleAuthResult(authResult) {
     console.log("Google Result", authResult)
     if (authResult) {
         // Access token has been successfully retrieved, requests can be sent to the API
-        console.log("has access")
+        cloudStorageConnected("googledrive")
     } else {
         // No access token could be retrieved, force the authorization flow.
         console.log("has no access")
