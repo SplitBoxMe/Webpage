@@ -20,7 +20,7 @@ function initDropZone() {
     uploadMultiple: false,
     init: function() {
       this.on("addedfile", function(file) {
-        console.log("Dropzone added file");
+        handleFileSelect([file])
         checkCompatibility();
       });
 
