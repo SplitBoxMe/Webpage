@@ -59,5 +59,3 @@ function decrypt(splitfile){
   }
 
 }
-
-document.getElementById('files').addEventListener('change', handleFileSelect, false);
