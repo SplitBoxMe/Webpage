@@ -48,7 +48,7 @@ function getFile(filename){
 }
 
 function writeFileToDropbox(filename, data){
-    var deferred = q.defer()
+    var deferred = Q.defer()
     client.writeFile("/"+filename, data, function(err, content){
         client.makeUrl(filename, {download: true} ,function(error, shareUrl){
             deferred.resolve(shareUrl.url)
