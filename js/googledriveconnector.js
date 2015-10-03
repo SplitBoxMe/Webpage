@@ -49,7 +49,9 @@ function uploadFile(filename, data){
     var deferred = Q.defer()
 
     addFile(filename, data)
-        .then(function(fileId){
+        .then(function(file){
+            var fileId = file.id
+
             $.ajax({
                 url: "https://www.googleapis.com/drive/v2/files/" + fileId + "/permissions",
                 type: 'post',
@@ -62,8 +64,8 @@ function uploadFile(filename, data){
                 headers: {
                     Authorization: 'Bearer ' + window.localStorage.getItem("googledriveToken")
                 },
-                success: function (dataSuccess) {
-                    deferred.resolve(data.webContentLink)
+                success: function () {
+                    deferred.resolve(file.webContentLink)
                 }
             });
         })
@@ -112,7 +114,7 @@ function addFile(filename, byteArray){
             'body': multipartRequestBody});
 
         request.execute(function(file){
-            deferred.resolve(file.id)
+            deferred.resolve(file)
         });
     }
 
