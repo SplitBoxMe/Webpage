@@ -59,7 +59,7 @@ function uploadFile(){
             var fileId = data.id
             //fileId = "0BxsBicby5sEYanlWYThKT19OM2c"
             console.log("fileId: " + fileId)
-            console.log("DownloadUrl " + data.downloadUrl)
+            console.log("DownloadUrl " + data.webContentLink)
 
             $.ajax({
                 url: "https://www.googleapis.com/drive/v2/files/" + fileId + "/permissions",
