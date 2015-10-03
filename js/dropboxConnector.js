@@ -45,7 +45,10 @@ function getFile(filename){
 }
 
 function writeFileToDropbox(filename, data){
-    client.readFile("/"+filename, data, function(err, content){
+    client.writeFile("/"+filename, data, function(err, content){
+        client.makeUrl(filename, function(){
+
+        })
     })
 }
 
