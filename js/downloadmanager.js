@@ -29,6 +29,7 @@ function downloadFileParts(key, cipher) {
     type: "GET",
     url:key,
     success: function(result) {
+      console.log("Key download done")
       splitfile.key = result
       count++
       callback(result)
@@ -39,6 +40,7 @@ function downloadFileParts(key, cipher) {
     type: "GET",
     url:cipher,
     success: function(result) {
+      console.log("Cipher download done")
       splitfile.cipher = result
       count++
       callback(result)
