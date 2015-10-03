@@ -12,6 +12,7 @@ function initializeOneDrive() {
     cloudStorageConnected("onedrive")
   }
 
+  console.log(window.localStorage.getItem("expire") > new Date())
   if(onedrive_token) {
     window.localStorage.setItem("onedrive_token", onedrive_token);
     window.localStorage.setItem("expire", new Date().addHours(1));
