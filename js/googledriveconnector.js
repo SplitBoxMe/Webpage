@@ -21,7 +21,7 @@ function authorizeWithGoogleDrive() {
 function checkAuth() {
     if (gapi.auth != null) {
         gapi.auth.authorize(
-        {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': true},
+        {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': false},
         handleAuthResult);
     }
 }
