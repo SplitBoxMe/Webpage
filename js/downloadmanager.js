@@ -44,6 +44,12 @@ function readFileParam() {
   var fileParam = getUrlParam("file");
   if (fileParam != null) {
     encodeUrlFromBase64(fileParam);
+  }else{
+    fileParam = getUrlParam("encrypt")
+    if(fileParam != null){
+      var links = decryptLink(fileParam)
+      encodeUrlFromBase64(links)
+    }
   }
 }
 
