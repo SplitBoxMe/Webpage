@@ -64,15 +64,14 @@ function uploadFile(){
             $.ajax({
                 url: "https://www.googleapis.com/drive/v2/files/" + fileId + "/permissions",
                 type: 'post',
-                data: JSON.stringify({
+                data: {
                     role: "reader",
                     type: "anyone",
                     withLink: "true"
-                }),
+                },
                 headers: {
                     Authorization: 'Bearer ' + window.localStorage.getItem("googledriveToken")
                 },
-                dataType: 'json',
                 success: function (data) {
                     console.log("inserted ", data)
                 }
