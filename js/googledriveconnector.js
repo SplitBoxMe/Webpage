@@ -45,21 +45,19 @@ function handleAuthResult(authResult) {
     }
 }
 
-function uploadFile(){
+function uploadFile(filename, data){
+    var deferred = Q.defer()
+
     $.ajax({
         url: 'https://www.googleapis.com/upload/drive/v2/files?uploadType=media',
         type: 'post',
-        data: "data123456sdlöfhjvnkalösdfgkjdlöadf",
+        data: data,
         headers: {
             Authorization: 'Bearer ' + window.localStorage.getItem("googledriveToken")
         },
-        //dataType: 'json',
         success: function (data) {
             console.log(data);
             var fileId = data.id
-            //fileId = "0BxsBicby5sEYanlWYThKT19OM2c"
-            console.log("fileId: " + fileId)
-            console.log("DownloadUrl " + data.webContentLink)
 
             $.ajax({
                 url: "https://www.googleapis.com/drive/v2/files/" + fileId + "/permissions",
@@ -74,10 +72,60 @@ function uploadFile(){
                     Authorization: 'Bearer ' + window.localStorage.getItem("googledriveToken")
                 },
                 success: function (data) {
-                    console.log("inserted ", data)
+
+                    deferred.resolve(data.webContentLink)
                 }
             });
 
         }
     });
+
+    return deferred.promise
+}
+
+function addFile(filename, fileData){
+    const boundary = '-------314159265358979323846';
+    const delimiter = "\r\n--" + boundary + "\r\n";
+    const close_delim = "\r\n--" + boundary + "--";
+
+    var reader = new FileReader();
+    reader.readAsBinaryString(fileData);
+    reader.onload = function(e) {
+        var contentType = fileData.type || 'application/octet-stream';
+        var metadata = {
+            'title': filename,
+            'mimeType': contentType
+        };
+
+        var base64Data = btoa(reader.result);
+        var multipartRequestBody =
+            delimiter +
+            'Content-Type: application/json\r\n\r\n' +
+            JSON.stringify(metadata) +
+            delimiter +
+            'Content-Type: ' + contentType + '\r\n' +
+            'Content-Transfer-Encoding: base64\r\n' +
+            '\r\n' +
+            base64Data +
+            close_delim;
+
+        var request = gapi.client.request({
+            'path': '/upload/drive/v2/files',
+            'method': 'POST',
+            'params': {'uploadType': 'multipart'},
+            'headers': {
+                'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
+            },
+            'body': multipartRequestBody});
+        if (!callback) {
+            callback = function(file) {
+                console.log(file)
+            };
+        }
+        request.execute(callback);
+    }
+}
+
+function testUpload(){
+    addFile("Testfile123", "dataasldkfjgaöihegjaskdlfasd")
 }
