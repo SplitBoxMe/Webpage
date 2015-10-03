@@ -120,12 +120,10 @@ function addFile(filename, byteArray){
                 'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
             },
             'body': multipartRequestBody});
-        if (!callback) {
-            callback = function(file) {
-                console.log(file)
-            };
-        }
-        request.execute(callback);
+
+        request.execute(function(file){
+            console.log(file)
+        });
     }
 }
 
