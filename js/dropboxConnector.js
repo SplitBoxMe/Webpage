@@ -2,6 +2,17 @@ var dropboxAppKey = "5tj76xeexmiy76h",
     client = null,
     dropboxIsAuthenticated = false
 
+function initializeDropbox() {
+    var hashDict = hashToDict(window.location.hash)
+    if( Object.keys(hashDict).length > 0 ){
+        if("state" in hashDict && hashDict["state"] == "dropboxLogin"){
+            onDropboxRedirect(hashDict["access_token"])
+        }
+    }else if( window.localStorage.getItem("dropboxToken") != null ){
+        initDropboxClient(window.localStorage.getItem("dropboxToken"))
+    }
+}
+
 function initDropboxClient(token){
     client = new Dropbox.Client({ key: dropboxAppKey , token: token});
     client.authenticate(function (err, client) {
@@ -55,13 +66,4 @@ function hashToDict(hash){
         }
     }
     return dict
-}
-
-var hashDict = hashToDict(window.location.hash)
-if( Object.keys(hashDict).length > 0 ){
-    if("state" in hashDict && hashDict["state"] == "dropboxLogin"){
-        onDropboxRedirect(hashDict["access_token"])
-    }
-}else if( window.localStorage.getItem("dropboxToken") != null ){
-    initDropboxClient(window.localStorage.getItem("dropboxToken"))
 }
