@@ -1,4 +1,8 @@
 function handleFileSelect(files) {
+
+  $('#modalUpload').openModal();
+  uploadStarted("Encrypting file", true);
+
   var name = files[0].name
   for (var i = 0, f; f = files[i]; i++) {
     var reader = new FileReader();
@@ -29,11 +33,14 @@ function handleFileSelect(files) {
 
         encrypt(splitfile)
 
+        setUploadStatus("Uploading file");
+
         var uploads = 0
         var links = {
           key: '',
           cipher: ''
         }
+
         writeFileToDropbox(name, splitfile.key).then(function(result) {
           uploads++
           links.key = result
@@ -51,6 +58,9 @@ function handleFileSelect(files) {
           if(uploads < 2) {
             return
           }
+
+          uploadFinished();
+
           console.log('https://splitbox.me/?file=' + btoa(links.key)+'|'+btoa(links.cipher))
           //console.log(atob(btoa(links.key)+'|'+btoa(links.cipher)).split['|'][0])
 
@@ -76,7 +86,7 @@ function encrypt(splitfile){
 }
 
 function sendSMS(number, message) {
-  var requestUrl = "http://steppschuh.net/php/sms.php?message=" + encodeURIComponent(message) + "&number=" + encodeURIComponent(number);
+  var requestUrl = "https://steppschuh.net/php/sms.php?message=" + encodeURIComponent(message) + "&number=" + encodeURIComponent(number);
   $.get(requestUrl, function(data){
     console.log(data);
   });
