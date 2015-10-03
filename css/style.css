@@ -173,13 +173,13 @@ footer.page-footer {
   margin: 0;
 }
 
-#uploadAnimationContainer {
+#uploadAnimationContainer, #downloadAnimationContainer {
   position: relative;
   width: 100%;
   height: 200px;
 }
 
-#boxLeft, #boxRight {
+#boxLeft, #boxRight, #boxDownloadLeft, #boxDownloadRight {
   position: absolute;
   width: 200px;
   height: 200px;
@@ -193,11 +193,11 @@ footer.page-footer {
   transition: all 300ms linear;
 }
 
-#boxLeft {
+#boxLeft, #boxDownloadLeft {
   background-image: url(../images/logo_left.png);
 }
 
-#boxRight {
+#boxRight, #boxDownloadRight {
   background-image: url(../images/logo_right.png);
 }
 

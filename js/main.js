@@ -121,6 +121,7 @@ function downloadStarted(heading, indeterminate) {
   $('#modalDownload').openModal();
   if (indeterminate) {
     // use indeterminate progress
+    animationStep = 100;
     setDownloadStatus(heading);
     animationHandle = setInterval(indeterminateDownloadUpdate, animationInterval);
   } else {
@@ -132,6 +133,18 @@ function downloadStarted(heading, indeterminate) {
 function downloadFinished() {
   $('#modalDownload').closeModal();
   clearInterval(animationHandle);
+}
+
+function indeterminateDownloadUpdate() {
+  animationStep += 1;
+  if (animationStep > 200) {
+    animationStep = 0;
+  }
+  if (animationStep > 100) {
+    animateDownloadStatus(200 - animationStep);
+  } else {
+    animateDownloadStatus(animationStep);  
+  }
 }
 
 function setDownloadStatus(heading, percentage) {
@@ -149,7 +162,7 @@ function setDownloadStatus(heading, percentage) {
   }
 }
 
-function animateDonwloadStatus(percentage) {
+function animateDownloadStatus(percentage) {
   var container = document.getElementById("downloadAnimationContainer");
   var leftBox = document.getElementById("boxDownloadLeft");
   var rightBox = document.getElementById("boxDownloadRight");
