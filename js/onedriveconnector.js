@@ -14,7 +14,7 @@ function initializeOneDrive() {
     cloudStorageConnected("onedrive")
   }
 
-  console.log(window.localStorage.getItem("expire") > new Date())
+  //console.log(window.localStorage.getItem("expire") > new Date())
   if(onedrive_token) {
     window.localStorage.setItem("onedrive_token", onedrive_token);
     window.localStorage.setItem("expire", new Date().addHours(1));
@@ -37,7 +37,7 @@ function initializeOneDrive() {
       location = "https://login.live.com/oauth20_authorize.srf?client_id=000000004816FB64&scope=onedrive.readwrite&response_type=token&redirect_uri=https://splitbox.me"
     }
   }
-  console.log("[DEBUG] OneDrive Token: " + onedrive_token)
+  //console.log("[DEBUG] OneDrive Token: " + onedrive_token)
 }
 
 function uploadFileToOneDrive(name, file, callback) {

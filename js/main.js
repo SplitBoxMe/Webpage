@@ -202,7 +202,7 @@ function animateDownloadStatus(percentage) {
 }
 
 function initDropZone() {
-	console.log("Initializing drop zone");
+	//console.log("Initializing drop zone");
 
 	Dropzone.options.imageDropzone = {
 		paramName: "fileUpload", // The name that will be used to transfer the file
