@@ -133,7 +133,7 @@ function sendMail(mail, subject, message) {
       throw "Invalid fields";
     }
 
-    var url = "http://steppschuh.net/php/mail.php";
+    var url = "https://steppschuh.net/php/mail.php";
     var params = "?to=" + mail;
     params = params + "&from_mail=" + "noreply@splitbox.me";
     params = params + "&from_name=" + encodeURIComponent("SplitBox.me");
