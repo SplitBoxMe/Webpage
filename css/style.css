@@ -236,3 +236,7 @@ footer.page-footer {
 .accent-color-text {
   color: #BF360C !important;
 }
+
+.acceptedCloud {
+  color: green;
+}
