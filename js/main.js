@@ -54,6 +54,7 @@ function decryptLink(){
 	var fileParam = getUrlParam("encrypt");
 	var downloadKey = document.getElementById("downloadKey").value;
 	if (downloadKey.length > 0) {
+		var links = decrypt(fileParam, downloadKey);
 		encodeUrlFromBase64(links);
 		$('#modalKey').closeModal();
 	} else {
@@ -62,7 +63,7 @@ function decryptLink(){
 }
 
 function decrypt(value, key){
-	return CryptoJS.AES.decrypt(value, key)
+	return CryptoJS.AES.decrypt(value, key).toString(CryptoJS.enc.Utf8);
 }
 
 function generatePassphrase(){
