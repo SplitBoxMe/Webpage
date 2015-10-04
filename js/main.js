@@ -43,7 +43,7 @@ function cloudStorageDisconnected(name) {
 
 function encryptLink() {
 	if (unencryptedDownloadLink == null) {
-		unencryptedDownloadLink = document.getElementById("downloadLink");
+		unencryptedDownloadLink = document.getElementById("downloadLink").value;
 	}
 	var link = unencryptedDownloadLink.replace("https://splitbox.me/?file=", "");
 	
