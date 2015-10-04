@@ -27,10 +27,6 @@ a:hover {
   color: #546E7A;
 }
 
-.container {
-  padding-top: 10px;
-}
-
 #setupCanvasWrapper {
   width: 100%;
   height: 250px;
@@ -45,7 +41,6 @@ a:hover {
 #logo-left-container {
   height: 100%;
   padding: 5px;
-  margin-top: -12px;
 }
 
 #logo-left-container img {
