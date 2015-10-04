@@ -25,6 +25,7 @@ function cloudStorageConnected(name) {
 		var icon = button.getElementsByTagName("i")[0];
 		icon.innerHTML = "cloud_done";
 		addClassName(button, "disabled");
+		addClassName(icon, "acceptedCloud");
 		Materialize.toast("Cloud storage connected", 2000);
 	}
 }
@@ -35,20 +36,24 @@ function cloudStorageDisconnected(name) {
 		var icon = button.getElementsByTagName("i")[0];
 		icon.innerHTML = "cloud_queue";
 		removeClassName(button, "disabled");
+		removeClassName(icon, "acceptedCloud");
 		Materialize.toast("Cloud storage disconnected", 2000);
 	}
 }
 
 function encryptLink() {
 	if (unencryptedDownloadLink == null) {
-		unencryptedDownloadLink = document.getElementById("downloadLink");
+		console.log("unencryptedDownloadLink set");
+		unencryptedDownloadLink = document.getElementById("downloadLink").value;
 	}
 	var link = unencryptedDownloadLink.replace("https://splitbox.me/?file=", "");
+	console.log("Encrypting link: " + link);
 	
 	var passphrase = document.getElementById("decryptPass").value;
-	if (passphrase.length < 1) {
+	if (passphrase.length < 6) {
 		passphrase = generatePassphrase();
 	}
+	console.log("Using passphrase: " + passphrase);
 
 	var encrypted = CryptoJS.AES.encrypt(link, passphrase);
 
@@ -61,14 +66,14 @@ function encryptLink() {
 	var encryptLinkButton = document.getElementById("encryptLink");
 	addClassName(encryptLinkButton, "disabled");
 
-	$('#decryptPass').change(function(event) {
+	$('#decryptPass').keydown(function(e){
 		var encryptLinkButton = document.getElementById("encryptLink");
 		removeClassName(encryptLinkButton, "disabled");
-	)};
 
-	$('#decryptPass').keyup(function(e){
 		if(e.keyCode == 13) {
+			event.preventDefault();
 			encryptLink();
+			return false;
 		}
 	});
 }

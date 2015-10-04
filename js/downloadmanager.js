@@ -1,4 +1,4 @@
-var unencryptedDownloadLink;
+var unencryptedDownloadLink = null;
 
 $.ajaxTransport("+binary", function(options, originalOptions, jqXHR){
 	// check for conditions and support for blob / arraybuffer response type
@@ -51,9 +51,11 @@ function readFileParam() {
 			$('#modalKey').openModal();
 		}
 
-		$('#downloadKey').keyup(function(e){
+		$('#downloadKey').keydown(function(e){
 			if(e.keyCode == 13) {
+				event.preventDefault();
 				decryptLink();
+				return false;
 			}
 		});
 	}
