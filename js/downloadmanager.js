@@ -126,8 +126,13 @@ var saveByteArray = (function () {
 	document.body.appendChild(a);
 	a.style = "display: none";
 	return function (data, name) {
-		var blob = new Blob(data, {type: "octet/stream"}),
-		url = window.URL.createObjectURL(blob);
+    var blob
+    if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+      blob = new Blob([data.buffer], {type: "octet/stream"});
+    } else {
+      blob = new Blob(data, {type: "octet/stream"})
+    }
+    var url = window.URL.createObjectURL(blob);
 		a.href = url;
 		a.download = name;
 		a.click();
