@@ -96,11 +96,11 @@ function downloadFileParts(key, cipher, name) {
 
 	function callback() {
 		if(count < 2) {
-			return
+			return;
 		}
 
-		setDownloadStatus('Download finished, decrypting file...', null);
-		decrypt(splitfile)
+		setDownloadStatus('Download finished, decrypting file', null);
+		decryptFile(splitfile)
 		saveByteArray([splitfile.plain], name);
 		downloadFinished();
 	}
@@ -114,7 +114,7 @@ function downloadFileParts(key, cipher, name) {
 
 }
 
-function decrypt(splitfile){
+function decryptFile(splitfile){
 	splitfile.plain =  new Uint8Array(splitfile.cipher.length)
 	for (var cycle = 0 ; cycle < splitfile.cipher.length ; cycle++) {
 		if(splitfile.cipher[cycle] == 255){
