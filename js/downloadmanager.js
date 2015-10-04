@@ -51,9 +51,11 @@ function readFileParam() {
 			$('#modalKey').openModal();
 		}
 
-		$('#downloadKey').keyup(function(e){
+		$('#downloadKey').keydown(function(e){
 			if(e.keyCode == 13) {
+				event.preventDefault();
 				decryptLink();
+				return false;
 			}
 		});
 	}

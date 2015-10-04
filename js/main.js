@@ -64,13 +64,15 @@ function encryptLink() {
 	addClassName(encryptLinkButton, "disabled");
 
 	$('#decryptPass').change(function(event) {
-		var encryptLinkButton = document.getElementById("encryptLink");
-		removeClassName(encryptLinkButton, "disabled");
+		var decryptLinkButton = document.getElementById("decryptPass");
+		removeClassName(decryptLinkButton, "disabled");
 	});
 
-	$('#decryptPass').keyup(function(e){
+	$('#decryptPass').keydown(function(e){
 		if(e.keyCode == 13) {
+			event.preventDefault();
 			encryptLink();
+			return false;
 		}
 	});
 }
