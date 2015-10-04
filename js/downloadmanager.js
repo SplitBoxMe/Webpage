@@ -18,8 +18,8 @@ $.ajaxTransport("+binary", function(options, originalOptions, jqXHR){
 			xhr.addEventListener('load', function(){
 				var data = {};
 				data[options.dataType] = xhr.response;
-			  // make callback and send data
-			  callback(xhr.status, xhr.statusText, data, xhr.getAllResponseHeaders());
+				// make callback and send data
+				callback(xhr.status, xhr.statusText, data, xhr.getAllResponseHeaders());
 			});
 
 			xhr.open(type, url, async, username, password);
@@ -78,6 +78,7 @@ function downloadFileParts(key, cipher, name) {
 		progress1 = value/2
 		setDownloadStatus(null, Math.floor((progress1+progress2)*100));
 	}).then(function(result){
+		Materialize.toast("Key file downloaded", 2000);
 		console.log("Key download done")
 		splitfile.key = result
 		count++
@@ -88,6 +89,7 @@ function downloadFileParts(key, cipher, name) {
 		progress2 = value/2
 		setDownloadStatus(null, Math.floor((progress1+progress2)*100));
 	}).then(function(result){
+		Materialize.toast("Cipher file downloaded", 2000);
 		console.log("Cipher download done")
 		splitfile.cipher = result
 		count++

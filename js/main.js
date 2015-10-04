@@ -25,6 +25,7 @@ function cloudStorageConnected(name) {
 		var icon = button.getElementsByTagName("i")[0];
 		icon.innerHTML = "cloud_done";
 		addClassName(button, "disabled");
+		Materialize.toast("Cloud storage connected", 2000);
 	}
 }
 
@@ -34,6 +35,7 @@ function cloudStorageDisconnected(name) {
 		var icon = button.getElementsByTagName("i")[0];
 		icon.innerHTML = "cloud_queue";
 		removeClassName(button, "disabled");
+		Materialize.toast("Cloud storage disconnected", 2000);
 	}
 }
 
@@ -48,6 +50,9 @@ function encryptLink() {
 
 	var smsForm = document.getElementById("sendSMSForm");
 	removeClassName(smsForm, "hide");
+
+	var encryptLinkButton = document.getElementById("encryptLink");
+	addClassName(encryptLinkButton, "disabled");
 }
 
 function decryptLink(){
@@ -84,10 +89,13 @@ function shareLinkViaMail() {
 	var mail = document.getElementById("mailAddress").value;
 	var link = document.getElementById("downloadLink").value;
 	var subject = "File shared via SplitBox";
-	var message = "Hey,<br/>someone wants to share a file with you:<br/><br/>" + document.getElementById("mailMessage").innerHTML;
+	var message = "Hey,<br/>someone wants to share a file with you:<br/><br/>" + document.getElementById("mailMessage").value;
 	message += "<br/><br/>Download: " + link;
 
 	sendMail(mail, subject, message);
+
+	var sendMailButton = document.getElementById("sendMail");
+	addClassName(sendMailButton, "disabled");
 }
 
 function sharePassViaSMS() {
