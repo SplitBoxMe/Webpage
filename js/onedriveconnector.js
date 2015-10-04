@@ -57,7 +57,43 @@ function uploadFileToOneDrive(name, file, callback) {
         url:'https://splitbox.me/onedriveproxy?url=' + encodeURIComponent('https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/' + name + ':/content') + '&auth=' + encodeURIComponent(onedrive_token),
         success: function(result) {
           callback(result)
+        },
+        error: function() {
+          Materialize.toast("OneDrive Token expired.", 2000)
+          window.localStorage.removeItem("onedrive_token")
+          window.location = 'https://login.live.com/oauth20_authorize.srf?client_id=000000004816FB64&scope=onedrive.readwrite&response_type=token&redirect_uri=https://splitbox.me'
         }
+      });
+    },
+    error: function() {
+      $.ajax({
+        type: "PUT",
+        processData:false,
+        data: file,
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader ("Authorization", "bearer "+onedrive_token);
+        },
+        url:'https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/'+name+':/content',
+        contentType: 'multipart/form-data',
+        success: function(result) {
+          $.ajax({
+            type: "GET",
+            url:'https://splitbox.me/onedriveproxy?url=' + encodeURIComponent('https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/' + name + ':/content') + '&auth=' + encodeURIComponent(onedrive_token),
+            success: function(result) {
+              callback(result)
+            },
+            error: function() {
+              Materialize.toast("OneDrive Token expired.", 2000)
+              window.localStorage.removeItem("onedrive_token")
+              window.location = 'https://login.live.com/oauth20_authorize.srf?client_id=000000004816FB64&scope=onedrive.readwrite&response_type=token&redirect_uri=https://splitbox.me'
+            }
+          });
+        },
+        error: function() {
+        Materialize.toast("OneDrive Token expired.", 2000)
+        window.localStorage.removeItem("onedrive_token")
+        window.location = 'https://login.live.com/oauth20_authorize.srf?client_id=000000004816FB64&scope=onedrive.readwrite&response_type=token&redirect_uri=https://splitbox.me'
+      }
       });
     }
   });
