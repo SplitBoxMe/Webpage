@@ -1,4 +1,4 @@
-var unencryptedDownloadLink;
+var unencryptedDownloadLink = null;
 
 $.ajaxTransport("+binary", function(options, originalOptions, jqXHR){
 	// check for conditions and support for blob / arraybuffer response type

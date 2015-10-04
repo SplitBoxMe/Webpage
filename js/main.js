@@ -43,6 +43,7 @@ function cloudStorageDisconnected(name) {
 
 function encryptLink() {
 	if (unencryptedDownloadLink == null) {
+		console.log("unencryptedDownloadLink set");
 		unencryptedDownloadLink = document.getElementById("downloadLink").value;
 	}
 	var link = unencryptedDownloadLink.replace("https://splitbox.me/?file=", "");
@@ -63,12 +64,10 @@ function encryptLink() {
 	var encryptLinkButton = document.getElementById("encryptLink");
 	addClassName(encryptLinkButton, "disabled");
 
-	$('#decryptPass').change(function(event) {
+	$('#decryptPass').keydown(function(e){
 		var encryptLinkButton = document.getElementById("encryptLink");
 		removeClassName(encryptLinkButton, "disabled");
-	});
 
-	$('#decryptPass').keydown(function(e){
 		if(e.keyCode == 13) {
 			event.preventDefault();
 			encryptLink();
