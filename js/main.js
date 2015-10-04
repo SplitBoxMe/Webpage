@@ -47,11 +47,13 @@ function encryptLink() {
 		unencryptedDownloadLink = document.getElementById("downloadLink").value;
 	}
 	var link = unencryptedDownloadLink.replace("https://splitbox.me/?file=", "");
+	console.log("Encrypting link: " + link);
 	
 	var passphrase = document.getElementById("decryptPass").value;
 	if (passphrase.length < 6) {
 		passphrase = generatePassphrase();
 	}
+	console.log("Using passphrase: " + passphrase);
 
 	var encrypted = CryptoJS.AES.encrypt(link, passphrase);
 
