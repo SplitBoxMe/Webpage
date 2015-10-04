@@ -64,7 +64,7 @@ function encryptLink() {
 	$('#decryptPass').change(function(event) {
 		var encryptLinkButton = document.getElementById("encryptLink");
 		removeClassName(encryptLinkButton, "disabled");
-	)};
+	});
 
 	$('#decryptPass').keyup(function(e){
 		if(e.keyCode == 13) {
