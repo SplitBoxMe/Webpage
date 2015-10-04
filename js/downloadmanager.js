@@ -105,13 +105,6 @@ function downloadFileParts(key, cipher, name) {
 		downloadFinished();
 	}
 
-  //for (var i = 0; i < urls.length; i++) {
-  //  var progress = Math.random() * 100;
-  //  setDownloadStatus("Downloading part " + i, progress);
-  //
-  //  // download
-  //}
-
 }
 
 function decryptFile(splitfile){
