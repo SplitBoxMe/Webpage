@@ -25,6 +25,7 @@ function cloudStorageConnected(name) {
 		var icon = button.getElementsByTagName("i")[0];
 		icon.innerHTML = "cloud_done";
 		addClassName(button, "disabled");
+		addClassName(icon, "acceptedCloud");
 		Materialize.toast("Cloud storage connected", 2000);
 	}
 }
@@ -35,6 +36,7 @@ function cloudStorageDisconnected(name) {
 		var icon = button.getElementsByTagName("i")[0];
 		icon.innerHTML = "cloud_queue";
 		removeClassName(button, "disabled");
+		removeClassName(icon, "acceptedCloud");
 		Materialize.toast("Cloud storage disconnected", 2000);
 	}
 }
