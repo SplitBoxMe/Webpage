@@ -44,7 +44,7 @@ function readFileParam() {
 	if (fileParam != null) {
 		encodeUrlFromBase64(fileParam);
 	}else{
-		fileParam = getUrlParam("encrypt")
+		fileParam = getUrlParam("encrypt");
 		if(fileParam != null){
 			$('#modalKey').openModal();
 		}

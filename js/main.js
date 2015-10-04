@@ -54,7 +54,6 @@ function decryptLink(){
 	var fileParam = getUrlParam("encrypt");
 	var downloadKey = document.getElementById("downloadKey").value;
 	if (downloadKey.length > 0) {
-		var links = decryptLink(fileParam, downloadKey);
 		encodeUrlFromBase64(links);
 		$('#modalKey').closeModal();
 	} else {
