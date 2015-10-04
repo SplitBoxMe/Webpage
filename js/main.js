@@ -40,8 +40,15 @@ function cloudStorageDisconnected(name) {
 }
 
 function encryptLink() {
-	var link = document.getElementById("downloadLink").value.replace("https://splitbox.me/?file=", ""),
-		passphrase = generatePassphrase()
+	if (unencryptedDownloadLink == null) {
+		unencryptedDownloadLink = document.getElementById("downloadLink");
+	}
+	var link = unencryptedDownloadLink.replace("https://splitbox.me/?file=", "");
+	
+	var passphrase = document.getElementById("decryptPass").value;
+	if (passphrase.length < 1) {
+		passphrase = generatePassphrase();
+	}
 
 	var encrypted = CryptoJS.AES.encrypt(link, passphrase);
 
@@ -53,6 +60,17 @@ function encryptLink() {
 
 	var encryptLinkButton = document.getElementById("encryptLink");
 	addClassName(encryptLinkButton, "disabled");
+
+	$('#decryptPass').change(function(event) {
+		var encryptLinkButton = document.getElementById("encryptLink");
+		removeClassName(encryptLinkButton, "disabled");
+	)};
+
+	$('#decryptPass').keyup(function(e){
+		if(e.keyCode == 13) {
+			encryptLink();
+		}
+	});
 }
 
 function decryptLink(){
