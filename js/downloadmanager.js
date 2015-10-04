@@ -106,7 +106,6 @@ function downloadFileParts(key, cipher, name) {
 		saveByteArray([splitfile.plain], name);
 		downloadFinished();
 	}
-
 }
 
 function decryptFile(splitfile){
