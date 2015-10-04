@@ -356,7 +356,7 @@ function copyToClipboard(input) {
 		input.select();
 		var successful = document.execCommand('copy');
 		if (successful) {
-			Materialize.toast("Copied to clipboard");	
+			Materialize.toast("Copied to clipboard", 1000);	
 		}
 	} catch (err) {
 		console.log('Oops, unable to copy');
