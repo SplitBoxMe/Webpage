@@ -62,9 +62,9 @@ function readFileParam() {
 }
 
 function encodeUrlFromBase64(urls) {
-	var key = atob(decodeURIComponent(urls.split('|')[0]))
-	var cipher = atob(decodeURIComponent(urls.split('|')[1]))
-	var name = atob(decodeURIComponent(urls.split('|')[2]))
+	var key = atob(decodeURIComponent(urls.split('|')[0]).split('|')[0])
+	var cipher = atob(decodeURIComponent(urls.split('|')[1]).split('|')[1] || decodeURIComponent(urls.split('|')[1]).split('|')[0])
+	var name = atob(decodeURIComponent(urls.split('|')[2]).split('|')[2] || decodeURIComponent(urls.split('|')[2]).split('|')[0])
 
 	console.log(key)
 	console.log(cipher)
