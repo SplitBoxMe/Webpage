@@ -38,7 +38,7 @@ function cloudStorageDisconnected(name) {
 }
 
 function encryptLink() {
-	var link = document.getElementById("downloadLink").value.replace("https://splitbox.me/?", ""),
+	var link = document.getElementById("downloadLink").value.replace("https://splitbox.me/?file=", ""),
 		passphrase = generatePassphrase()
 
 	var encrypted = CryptoJS.AES.encrypt(link, passphrase);
