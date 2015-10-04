@@ -36,7 +36,7 @@ function handleAuthResult(authResult) {
         gapi.auth.authorize(
             {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': false},
             handleAuthResult);
-    } else {
+    } else if(authResult.access_token && authResult.access_token != ""){
         // Access token has been successfully retrieved, requests can be sent to the API
         cloudStorageConnected("googledrive")
         googledriveIsAuthenticated = true
