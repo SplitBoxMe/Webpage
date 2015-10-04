@@ -30,7 +30,6 @@ function checkAuth() {
 
 
 function handleAuthResult(authResult) {
-    console.log(authResult)
     if (authResult.error_subtype && authResult.error_subtype == "access_denied") {
         // No access token could be retrieved, force the authorization flow.
         gapi.auth.authorize(
