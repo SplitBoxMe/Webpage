@@ -48,7 +48,7 @@ function encryptLink() {
 	var link = unencryptedDownloadLink.replace("https://splitbox.me/?file=", "");
 	
 	var passphrase = document.getElementById("decryptPass").value;
-	if (passphrase.length < 1) {
+	if (passphrase.length < 6) {
 		passphrase = generatePassphrase();
 	}
 
