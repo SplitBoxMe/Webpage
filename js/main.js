@@ -64,8 +64,8 @@ function encryptLink() {
 	addClassName(encryptLinkButton, "disabled");
 
 	$('#decryptPass').change(function(event) {
-		var decryptLinkButton = document.getElementById("decryptPass");
-		removeClassName(decryptLinkButton, "disabled");
+		var encryptLinkButton = document.getElementById("encryptLink");
+		removeClassName(encryptLinkButton, "disabled");
 	});
 
 	$('#decryptPass').keydown(function(e){
