@@ -21,15 +21,16 @@ function authorizeWithGoogleDrive() {
 }
 
 function checkAuth() {
-    //if (gapi.auth != null) {
-    //    gapi.auth.authorize(
-    //    {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': true},
-    //    handleAuthResult);
-    //}
+    if (gapi.auth != null) {
+        gapi.auth.authorize(
+        {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': true},
+        handleAuthResult);
+    }
 }
 
 
 function handleAuthResult(authResult) {
+    console.log(authResult)
     if (authResult.error_subtype && authResult.error_subtype == "access_denied") {
         // No access token could be retrieved, force the authorization flow.
         gapi.auth.authorize(
