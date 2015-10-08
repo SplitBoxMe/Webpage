@@ -21,11 +21,11 @@ function authorizeWithGoogleDrive() {
 }
 
 function checkAuth() {
-    if (gapi.auth != null) {
-        gapi.auth.authorize(
-        {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': true},
-        handleAuthResult);
-    }
+    //if (gapi.auth != null) {
+    //    gapi.auth.authorize(
+    //    {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': true},
+    //    handleAuthResult);
+    //}
 }
 
 
