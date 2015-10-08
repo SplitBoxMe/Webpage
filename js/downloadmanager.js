@@ -1,4 +1,4 @@
-var unencryptedDownloadLink;
+var unencryptedDownloadLink = null;
 
 $.ajaxTransport("+binary", function(options, originalOptions, jqXHR){
 	// check for conditions and support for blob / arraybuffer response type
@@ -51,18 +51,20 @@ function readFileParam() {
 			$('#modalKey').openModal();
 		}
 
-		$('#downloadKey').keyup(function(e){
+		$('#downloadKey').keydown(function(e){
 			if(e.keyCode == 13) {
+				event.preventDefault();
 				decryptLink();
+				return false;
 			}
 		});
 	}
 }
 
 function encodeUrlFromBase64(urls) {
-	var key = atob(decodeURIComponent(urls.split('|')[0]))
-	var cipher = atob(decodeURIComponent(urls.split('|')[1]))
-	var name = atob(decodeURIComponent(urls.split('|')[2]))
+	var key = atob(decodeURIComponent(urls.split('|')[0]).split('|')[0])
+	var cipher = atob(decodeURIComponent(urls.split('|')[1]).split('|')[1] || decodeURIComponent(urls.split('|')[1]).split('|')[0])
+	var name = atob(decodeURIComponent(urls.split('|')[2]).split('|')[2] || decodeURIComponent(urls.split('|')[2]).split('|')[0])
 
 	console.log(key)
 	console.log(cipher)

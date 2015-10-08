@@ -54,7 +54,7 @@ function uploadFileToOneDrive(name, file, callback) {
     success: function(result) {
       $.ajax({
         type: "GET",
-        url:'https://splitbox.me/onedriveproxy?url=' + encodeURIComponent('https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/' + name + ':/content') + '&auth=' + encodeURIComponent(onedrive_token),
+        url:'https://splitbox.me/onedriveproxy/?url=' + encodeURIComponent('https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/' + name + ':/content') + '&auth=' + encodeURIComponent(onedrive_token),
         success: function(result) {
           callback(result)
         },
@@ -78,7 +78,7 @@ function uploadFileToOneDrive(name, file, callback) {
         success: function(result) {
           $.ajax({
             type: "GET",
-            url:'https://splitbox.me/onedriveproxy?url=' + encodeURIComponent('https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/' + name + ':/content') + '&auth=' + encodeURIComponent(onedrive_token),
+            url:'https://splitbox.me/onedriveproxy/?url=' + encodeURIComponent('https://api.onedrive.com/v1.0/drive/root:/Apps/SplitBox/' + name + ':/content') + '&auth=' + encodeURIComponent(onedrive_token),
             success: function(result) {
               callback(result)
             },

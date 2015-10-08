@@ -4,3 +4,9 @@ SplitBox lets you securely share any file for free - and we mean it. Your file w
 Than means you just need two public cloud spaces and you are ready to share files completly secure. 
 
 Demo: [splitbox.me](http://splitbox.me)
+
+
+# Revoking permissions:
+[Dropbox](https://www.dropbox.com/account#security)
+[Google Drive](https://security.google.com/settings/security/permissions)
+[OneDrive](https://account.live.com/consent/Manage)
